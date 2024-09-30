@@ -1,20 +1,24 @@
 {
-  "name": "blog-yang",
-  "version": "0.0.1",
-  "description": "A VuePress project",
-  "license": "MIT",
-  "type": "module",
+  "name": "codefather",
+  "version": "1.0.0",
   "scripts": {
-    "docs:build": "vuepress build docs",
-    "docs:clean-dev": "vuepress dev docs --clean-cache",
-    "docs:dev": "vuepress dev docs",
-    "docs:update-package": "npx vp-update"
+    "docs:dev": "vuepress dev .",
+    "docs:build": "set NODE_OPTIONS=--openssl-legacy-provider --max_old_space_size=8192 && vuepress build ."
   },
+  "license": "MIT",
   "devDependencies": {
-    "@vuepress/bundler-vite": "^2.0.0-rc.7",
-    "@vuepress/theme-default": "^2.0.0-rc.11",
-    "vue": "^3.4.0",
-    "vuepress": "^2.0.0-rc.7",
-    "@vuepress/plugin-blog": "^2.0.0-rc.11"
+    "@vuepress/plugin-back-to-top": "^1.9.10",
+    "@vuepress/plugin-google-analytics": "^1.9.10",
+    "@vuepress/plugin-medium-zoom": "^1.9.10",
+    "vuepress": "^1.9.10",
+    "vuepress-plugin-baidu-autopush": "^1.0.1",
+    "vuepress-plugin-feed": "^0.1.9",
+    "vuepress-plugin-seo": "^0.1.4",
+    "vuepress-plugin-sitemap": "^2.3.1",
+    "vuepress-plugin-tags": "^1.0.2"
+  },
+  "dependencies": {
+    "vuepress-plugin-code-copy": "^1.0.6",
+    "vuepress-plugin-img-lazy": "^1.0.4"
   }
 }

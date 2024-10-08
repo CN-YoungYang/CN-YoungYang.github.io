@@ -1,15 +1,8 @@
----
-permalink: /
----
-
-# 阳九五的博客
+# Web相关
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >
 > 本站地址：[https://blog.59young.com](https://blog.59young.com)
 
-## 本站内容
 
-- [Web](/Web)
-- [Dart](/Dart)
-- [Flutter](/Flutter)
+[测试文章](测试文章.md)

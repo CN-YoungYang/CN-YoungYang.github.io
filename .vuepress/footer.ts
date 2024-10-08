@@ -4,29 +4,21 @@
 export default {
   friendLinks: [
     {
-      label: "站长 - 程序员鱼皮",
+      label: "站长 - 阳九五",
       // icon: "/icon/user.svg",
-      href: "https://yuyuanweb.feishu.cn/wiki/Abldw5WkjidySxkKxU2cQdAtnah",
+      // href: "https://github.com/CN-YoungYang",
     },
     {
-      label: "鱼鸢网络",
-      href: "https://yuyuanweb.com/",
+      label: "Github",
+      href: "https://github.com/CN-YoungYang",
     },
     {
-      label: "老鱼简历",
-      href: "https://www.laoyujianli.com/",
-    },
-    {
-      label: "鱼聪明 AI",
-      href: "https://www.yucongming.com/",
-    },
-    {
-      label: "编程学习圈",
-      href: "https://yuyuanweb.feishu.cn/wiki/VC1qwmX9diCBK3kidyec74vFnde",
+      label: "Gitee",
+      href: "https://gitee.com/SoYang95",
     },
   ],
   copyright: {
     href: "https://beian.miit.gov.cn/",
-    name: "沪ICP备19026706号-6",
+    name: "鄂ICP备18006679号-1",
   },
 };

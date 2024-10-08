@@ -106,7 +106,7 @@ export default {
       overflow-x: hidden;
       overflow-y: hidden;
       & > div:first-child
-        overflow-x scroll
+        // overflow-x scroll
         white-space: nowrap;
         text-overflow ellipsis
       hr

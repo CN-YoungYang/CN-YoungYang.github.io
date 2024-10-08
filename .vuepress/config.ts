@@ -4,13 +4,13 @@ import sidebar from "./sidebar";
 import footer from "./footer";
 import extraSideBar from "./extraSideBar";
 
-const author = "程序员鱼皮";
-const domain = "https://codefather.cn";
+const author = "阳九五";
+const domain = "https://blog.59young.com";
 const tags = ["程序员", "编程", "计算机"];
 
 export default defineConfig({
-  title: "鱼皮的编程宝典",
-  description: "贴心的编程学习路线，全面的编程知识百科",
+  title: "阳九五的博客",
+  description: "用于记录相关信息",
   head: [
     // 站点图标
     ["link", { rel: "icon", href: "/favicon.ico" }],
@@ -19,8 +19,7 @@ export default defineConfig({
       "meta",
       {
         name: "keywords",
-        content:
-          "程序员鱼皮, 编程学习路线, 编程知识百科, Java, 编程导航, 前端, 开发, 编程分享, 项目, IT, 求职, 面经",
+        content: "阳九五的博客,用于记录相关信息",
       },
     ],
     // 百度统计
@@ -121,17 +120,17 @@ export default defineConfig({
     lastUpdated: "最近更新",
 
     // GitHub 仓库位置
-    repo: "liyupi/codefather",
-    docsBranch: "master",
+    repo: "CN-YoungYang/CN-YoungYang.github.io",
+    docsBranch: "main",
 
     // 编辑链接
-    editLinks: true,
-    editLinkText: "完善页面",
+    // editLinks: true,
+    // editLinkText: "完善页面",
 
     // @ts-ignore
     // 底部版权信息
     footer,
     // 额外右侧边栏
-    extraSideBar,
+    // extraSideBar,
   },
 });

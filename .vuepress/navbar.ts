@@ -3,14 +3,14 @@ import {NavItem} from "vuepress/config";
 export default [
     {
         text: "Web",
-        link: '/Web/'
+        link: '/docs/web/'
     },
     {
         text: "Dart",
-        link: '/Dart/'
+        link: '/docs/dart/'
     },
     {
         text: "Flutter",
-        link: '/Flutter/'
+        link: '/docs/flutter/'
     },
 ] as NavItem[];

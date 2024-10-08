@@ -10,6 +10,6 @@ permalink: /
 
 ## 本站内容
 
-- [Web](/docs/web)
-- [Dart](/docs/dart)
-- [Flutter](/docs/flutter)
+- [Web](/web)
+- [Dart](/dart)
+- [Flutter](/flutter)

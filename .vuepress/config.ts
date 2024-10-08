@@ -51,12 +51,12 @@ export default defineConfig({
   plugins: [
     ["@vuepress/back-to-top"],
     // Google 分析
-    [
-      "@vuepress/google-analytics",
-      {
-        ga: "GTM-WVS9HM6W", // 补充自己的谷歌分析 ID，比如 UA-00000000-0
-      },
-    ],
+    // [
+    //   "@vuepress/google-analytics",
+    //   {
+    //     ga: "GTM-WVS9HM6W", // 补充自己的谷歌分析 ID，比如 UA-00000000-0
+    //   },
+    // ],
     ["@vuepress/medium-zoom"],
     // https://github.com/lorisleiva/vuepress-plugin-seo
     [

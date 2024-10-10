@@ -11,6 +11,7 @@ export default [
     collapsable: false,
     children: [
       "./基础类型/变量.md",
+      "./基础类型/常量.md",
     ],
   },
 ];

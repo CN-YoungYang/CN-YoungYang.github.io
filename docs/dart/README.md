@@ -5,4 +5,8 @@
 > 本站地址：[https://blog.59young.com](https://blog.59young.com)
 
 
-学习Dart推荐在[猫哥](https://wiki.ducafecat.tech/flutter/dart%E8%AF%AD%E8%A8%80/0%E5%8F%82%E8%80%83.html)这里学习
+学习Dart推荐在[猫哥](https://ducafecat.com/course)这里学习
+
+
+[✔] 环境搭建  
+[X] Dart 语言学习

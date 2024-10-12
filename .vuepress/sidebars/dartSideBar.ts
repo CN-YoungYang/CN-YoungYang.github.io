@@ -18,4 +18,14 @@ export default [
       "./基础类型/Dart_日期时间.md"
     ],
   },
+  {
+    title: "集合枚举",
+    collapsable: false,
+    children: [
+      "./集合枚举/Dart_列表 List.md",
+      "./集合枚举/Dart_集合 Map.md",
+      "./集合枚举/Dart_集合 Set.md",
+      "./集合枚举/Dart_枚举 enum.md"
+    ],
+  },
 ];

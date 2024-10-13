@@ -8,7 +8,7 @@ export default [
   // },
   {
     title: "基础类型",
-    collapsable: false,
+    collapsable: true,
     children: [
       "./基础类型/Dart_变量.md",
       "./基础类型/Dart_常量.md",
@@ -20,7 +20,7 @@ export default [
   },
   {
     title: "集合枚举",
-    collapsable: false,
+    collapsable: true,
     children: [
       "./集合枚举/Dart_列表 List.md",
       "./集合枚举/Dart_集合 Map.md",

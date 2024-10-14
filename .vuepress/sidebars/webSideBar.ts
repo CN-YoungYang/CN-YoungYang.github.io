@@ -1,10 +1,10 @@
 export default [
   "",
   {
-    title: "Web",
-    collapsable: false,
+    title: "HTML5",
+    collapsable: true,
     children: [
-      "测试文章.md",
+      "./HTML5/HTML5_响应式列表宽度.md",
     ],
   },
 ];

@@ -10,7 +10,7 @@
 每个枚举成员都是隐式地声明为 final 的，这意味着它们的值在初始化后不能被改变。
 
 ## 定义
-```
+```dart
 // 定义颜色枚举值
 enum ColorType{
   none,
@@ -62,7 +62,7 @@ ColorType.blue
 ```
 
 ## 使用场景
-```
+```dart
 // 定义一个枚举来表示用户账户的状态
 enum AccountStatus {
   active,

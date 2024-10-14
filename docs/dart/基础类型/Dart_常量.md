@@ -9,7 +9,7 @@
 ## 相同点
 
 ### 声明类型可以省略
-```
+```dart
 final String a = 'Young';
 final a = 'Young';
 
@@ -18,7 +18,7 @@ const a = 'Young';
 ```
 
 ### 赋值后无法修改
-```
+```dart
 final a = 'Young';
 a = "Yang"; // 报错
 
@@ -28,7 +28,7 @@ a = 'Yang';  // 报错
 
 ### 不能使用var去申明
 var会推导变量的类型,不是数据类型
-```
+```dart
 final var a = 'Young'; // 报错
 
 const var a = 'Young'; // 报错
@@ -39,7 +39,7 @@ const var a = 'Young'; // 报错
 ### 赋值的时候不同
 final 运行时赋值、可以先声明后赋值,只能被赋值一次  
 const 编译时赋值、声明的同时就要赋值,只能被赋值一次
-```
+```dart
 final dt = DateTime.now(); //正常
 
 final dt  // 正常
@@ -53,7 +53,7 @@ const dt = "2024-10-10"; // 正常
 ### 不可变性可传递
 final 值可以修改  
 const 值不能修改
-```
+```dart
 final List ls = [11, 22, 33];
 ls[1] = 44;  // 正常
 
@@ -64,7 +64,7 @@ ls[1] = 44;  // 报错
 ### 内存中重复创建
 final 不存在内存复用
 const 存在内存复用
-```
+```dart
 final a1 = [11 , 22];
 final a2 = [11 , 22];
 print(identical(a1, a2));  // 显示flase
@@ -77,7 +77,7 @@ print(identical(a1, a2));  // 显示true
 
 ### 使用场景
 #### final 成员变量初始
-```
+```dart
 class PlaceholdWidget extends StatelessWidget {
 
   final String? assetImagePath;
@@ -94,7 +94,7 @@ class PlaceholdWidget extends StatelessWidget {
 }
 ```
 #### const 全局参数
-```
+```dart
 // 本地存储key
 static const storageFirstOpen = 'first_open';
 static const storageLanguageCode = 'language_code';

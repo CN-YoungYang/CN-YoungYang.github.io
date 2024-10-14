@@ -5,7 +5,7 @@
 > 本站地址：[https://blog.59young.com](https://blog.59young.com)
 
 ## 定义
-```
+```dart
 /// 正常写法
 int add1(int x){
     return x + 1;
@@ -24,7 +24,7 @@ void main(List<String> args) {
 ```
 
 ## 可选参数
-```
+```dart
 /// 可选参数
 void main(List<String> args) {
     // 可选参数
@@ -48,7 +48,7 @@ void main(List<String> args) {
 ```
 
 ## 命名参数
-```
+```dart
 /// 命名参数
 void main(List<String> args) {
     // 命名参数
@@ -71,7 +71,7 @@ void main(List<String> args) {
 }
 ```
 ## 作用域
-```
+```dart
 bool topLevel = true;
 
 /// 作用域
@@ -99,7 +99,7 @@ void main(List<String> args) {
 }
 ```
 ## Function 返回函数对象
-```
+```dart
 void main(List<String> args) {
     Function makeAdd(int x) {
       return (int y) => x + y;
@@ -111,7 +111,7 @@ void main(List<String> args) {
 }
 ```
 ## 匿名函数
-```
+```dart
 void main(List<String> args) {
     /*
      * 下面代码定义了只有一个参数 item 且没有参数类型的匿名方法。

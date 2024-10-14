@@ -9,12 +9,12 @@
 可以通过 `dartdoc` 工具导出api文档
 
 ## 单行注释
-```
+```dart
 // Symbol libraryName = new Symbol('dart.core');
 ```
 
 ## 多行指数
-```
+```dart
   /*
    * Symbol
    *
@@ -27,7 +27,7 @@
 > 一般用在需要说明 类 函数 功能 输入 输出
 
 ## 文档注释
-```
+```dart
 /// `main` 函数
 ///
 /// 符号

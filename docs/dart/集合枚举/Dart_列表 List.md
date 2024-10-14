@@ -7,7 +7,7 @@
 
 ## 初始
 List 是一个有序列表
-```
+```dart
 List l = [1,2,3];
 
 print(l);
@@ -17,7 +17,7 @@ print(l);
 
 ## 声明
 ### 自动
-```
+```dart
 List<int> l = [];
 
 l..add(1)
@@ -29,7 +29,7 @@ print(l);
 [1, 2, 3]
 ```
 ### 定长
-```
+```dart
 List l = List<int>.filled(3, 0);
 l[0] = 1;
 l[1] = 2;
@@ -42,7 +42,7 @@ print(l);
 ```
 
 ### 生成数据
-```
+```dart
 List l = List.generate(10, (index) => index * index);
 
 print(l);
@@ -59,7 +59,7 @@ print(l);
 | last | 最后一个 |
 | length | 长度 |
 | reversed | 反转 |
-```
+```dart
 List l = List.generate(10, (index) => index + 1);
 
 print("List: ${l}");
@@ -100,7 +100,7 @@ reversed: (10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
 
 ## 常用方法
 ### 添加
-```
+```dart
 List<int> l = [];
 l..add(1)
  ..addAll([2, 3, 4, 5]);
@@ -114,7 +114,7 @@ add: [1, 2, 3, 4, 5]
 insert: [1, 2, 3, 4, 5, 6, 7, 8]
 ```
 ### 查询
-```
+```dart
 List l = List.generate(10, (index) => index * 2);
 
 print(l);
@@ -126,7 +126,7 @@ print("第一个值大于9的索引: ${l.indexWhere((it) => it > 9)}" );
 第一个值大于9的索引: 5
 ```
 ### 删除
-```
+```dart
 List<int> l = [6, 1, 2, 3, 4, 5, 6, 6];
 
 l.remove(6);
@@ -139,7 +139,7 @@ print(l);
 ```
 
 ### Range
-```
+```dart
 List<int> l = [6, 1, 2, 3, 4, 5, 6, 6];
 
 l.fillRange(0, 3, 9);  // 按区间填充
@@ -152,7 +152,7 @@ print(l.getRange(0, 5));  // 按区间获取
 ```
 
 ### 洗牌
-```
+```dart
 List<int> l = [6, 1, 2, 3, 4, 5, 6, 6];
 
 l.shuffle();
@@ -165,7 +165,7 @@ print(l);
 ```
 ### 排序
 #### 数字
-```
+```dart
 List<int> l = [6, 1, 2, 3, 4, 5, 6, 6];
 
 l.sort();
@@ -175,7 +175,7 @@ print(l);
 ```
 
 #### 日期
-```
+```dart
 List<DateTime> dtList = [];
 dtList.addAll([
   DateTime.now(),
@@ -193,7 +193,7 @@ print(dtList);
 [2024-10-01 16:01:36.275228, 2024-10-11 16:01:36.276225, 2024-10-13 16:01:36.275228]
 ```
 ### 复制子列表
-```
+```dart
 List<int> l = [6, 1, 2, 3, 4, 5, 6, 6];
 
 List<int> l2 = l.sublist(1,4);
@@ -209,7 +209,7 @@ print(l2);
 | `+` | 连接 |
 | `[]` | 取值 |
 ### `=` 赋值
-```
+```dart
 List<int> l = [1,2,3];
 
 print(l);
@@ -217,7 +217,7 @@ print(l);
 [1,2,3]
 ```
 ### `+` 连接
-```
+```dart
 List<int> l1 = [1,2,3];
 List<int> l2 = [4,5,6];
 
@@ -226,7 +226,7 @@ print("${l1 + l2}");
 [1, 2, 3, 4, 5, 6]
 ```
 ### `[]` 取值
-```
+```dart
 List<int> l = [1,2,3];
 
 print(l[0]);

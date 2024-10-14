@@ -9,7 +9,7 @@
 
 ## 声明
 ### 松散
-```
+```dart
 // Set Set1 = new Set();
 // Set Set1 = Set();
 Set Set1 = {};
@@ -26,7 +26,7 @@ print(Set1);
 ```
 ### 强类型
 `泛型`限定值类型, 输入不符合的类型则会报错
-```
+```dart
 // Set Set1 = new Set<String>();
 // Set Set1 = Set<String>();
 Set Set1 = <String>{};
@@ -50,7 +50,7 @@ print(Set1);
 | last | 最后一个 |
 | length | 个数 |
 
-```
+```dart
 Set Set1 = {'Html', 'Css', 'javascript', 'C#', 'Dart'};
 
 print('是否为空: ${Set1.isEmpty}');
@@ -85,7 +85,7 @@ print('最后一个: ${Set1.last}');
 | retainAll | 保留指定的 |
 | retainWhere | 按条件保留 |
 ### 添加
-```
+```dart
 Set Set1 = new Set();
 Set1..add('dart')
   ..addAll(['dart', 'c#', 'j#', 'e#']);
@@ -94,7 +94,7 @@ print(Set1);
 {dart, c#, j#, e#}
 ```
 ### 查询
-```
+```dart
 Set Set1 = <String>{"js", "node", "dart", "css", "html", "macos", "docker", "git"};
 
 print('单个查询: ${Set1.contains('dart')}');
@@ -104,7 +104,7 @@ print('多个查询: ${Set1.containsAll(['dart', 'swift'])}');
 多个查询: false
 ```
 ### 差集 & 交集 & 并集
-```
+```dart
 Set Set1 = <String>{"js", "node", "dart", "css", "html", "macos", "docker", "git"};
 Set Set2 = <String>{"linux", "docker", "git", "go", "python", "sql", "node", "js", "aws"};
 
@@ -118,7 +118,7 @@ print('并集: ${Set1.union(Set2)}');
 ```
 ### 查询对象并返回
 按对象查询到返回对象-没有则返回null
-```
+```dart
 Set Set1 = <String>{"js", "node", "dart", "css", "html", "macos", "docker", "git"};
 Set Set2 = <String>{"linux", "docker", "git", "go", "python", "sql", "node", "js", "aws"};
 
@@ -129,7 +129,7 @@ dart
 null
 ```
 ### 条件查询
-```
+```dart
 Set Set1 = <String>{"Young", "Yang", "HanYang"};
 
 print('按条件查询,返回多个值: ${Set1.where((element) => element.length <= 5 )}' );
@@ -141,7 +141,7 @@ print('按条件反向查询,返回一个值: ${Set1.lastWhere((element) => elem
 按条件反向查询,返回一个值: HanYang
 ```
 ### 删除
-```
+```dart
 Set Set1 = <String>{"js", "node", "dart", "css", "html", "macos", "docker", "git"};
 
 Set1.remove("git");
@@ -165,7 +165,7 @@ print("清空: ${Set1}");
 清空: {}
 ```
 ### 保留
-```
+```dart
 Set Set1 = <String>{"js", "node", "dart", "css", "html", "macos", "docker", "git"};
 
 Set1.retainWhere((element){
@@ -185,7 +185,7 @@ print('只保留指定的: $Set1');
 | 名称 | 说明 |
 | ---- | ---- |
 | `=` | 赋值 |
-```
+```dart
 Set Set1 = {'Html', 'Css', 'javascript', 'C#', 'Dart'};
 Set1 = {'HTML'};
 
@@ -196,7 +196,7 @@ print(Set1);
 
 ## 使用场景
 ### 列表去重
-```
+```dart
 List ls = ['dart', 'java', 'c#', 'c#', 'Html', 'Html', 'dart', 'java'];
 Set Set1 = new Set();
 Set1.addAll(ls);

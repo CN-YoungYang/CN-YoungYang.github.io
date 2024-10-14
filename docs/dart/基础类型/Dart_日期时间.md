@@ -7,7 +7,7 @@
 [DateTime class](https://api.dart.dev/stable/3.5.3/dart-core/DateTime-class.html) 和 [Duration class](https://api.dart.dev/stable/3.5.3/dart-core/Duration-class.html)
 
 ## 当前时间
-```
+```dart
 DateTime D = new DateTime.now();
 
 print(D);  // 当前时间
@@ -16,7 +16,7 @@ print(D);  // 当前时间
 ```
 
 ## 指定时间
-```
+```dart
 DateTime D = new DateTime(2022,10,28,8,30);
 
 print(D);  // 指定时间
@@ -25,7 +25,7 @@ print(D);  // 指定时间
 ```
 
 ## 指定UTC时间
-```
+```dart
 DateTime D = new DateTime.utc(2022,10,28,8,30);
 
 print(D);  // 指定UTC时间
@@ -34,7 +34,7 @@ print(D);  // 指定UTC时间
 ```
 
 ## 解析时间
-```
+```dart
 DateTime D1 = DateTime.parse('2018-10-10 09:30:30Z');
 DateTime D2 = DateTime.parse('2018-10-10 09:30:30+0800');
 
@@ -46,7 +46,7 @@ print(D2);  // 国际标准ISO
 ```
 
 ## 时间增减量
-```
+```dart
 DateTime D = new DateTime.now();
 
 print(D);
@@ -59,7 +59,7 @@ print(D.add(new Duration(minutes: -5)));
 ```
 
 ## 比较时间
-```
+```dart
 DateTime D1 = new DateTime(2018, 10, 1);
 DateTime D2 = new DateTime(2018, 10, 31);
 
@@ -73,7 +73,7 @@ print('2018-10-1 和 2018-10-31相同:' + D1.isAtSameMomentAs(D2));
 ```
 
 ## 时间差
-```
+```dart
 DateTime D1 = new DateTime(2022, 10, 1);
 DateTime D2 = new DateTime(2022, 10, 28);
 Duration DF = D1.difference(D2);
@@ -86,7 +86,7 @@ print('2022-10-1 距离 2022-10-28:' + DF.inHours.toString() + '小时');
 ```
 
 ## 时间戳
-```
+```dart
 DateTime D = new DateTime.now();
 
 print(D.millisecondsSinceEpoch);

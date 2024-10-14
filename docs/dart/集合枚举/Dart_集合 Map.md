@@ -10,7 +10,7 @@ key 是唯一的
 
 ## 声明
 ### 松散
-```
+```dart
 Map Map1 = {};
 Map1['web'] = 'https://github.com/CN-YoungYang';
 Map1['type'] = 'Github';
@@ -27,7 +27,7 @@ print(Map2);
 ```
 ### 强类型
 `泛型`限定key和value的类型, 输入不符合的类型则会报错
-```
+```dart
 Map Map1 = <String, String>{};
 Map1['web'] = 'https://github.com/CN-YoungYang';
 Map1['type'] = 'Github';
@@ -52,7 +52,7 @@ print(Map2);
 | length | 长度 |
 | entries | k,v集合 |
 keys,values,entries 返回的都是`Iterable`类型
-```
+```dart
 Map a = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 
 print(a.isEmpty);
@@ -82,7 +82,7 @@ true
 | update | 更新数据 |
 | updateAll | 批量更新数据 |
 ### `addAll` 新增
-```
+```dart
 Map m = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 
 m.addAll({'Age': 18, 'Sex': '男'});
@@ -90,7 +90,7 @@ m.addAll({'Age': 18, 'Sex': '男'});
 {name: YoungYang, web: blog.59young.com, Age: 18, Sex: 男}
 ```
 ### `addEntries` 接入 `MapEntry`
-```
+```dart
 Map m1 = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 Map m2 = {'Age': 18, 'Sex': '男'};
 m1.addEntries(m2.entries);
@@ -100,7 +100,7 @@ print(m1);
 {name: YoungYang, web: blog.59young.com, Age: 18, Sex: 男}
 ```
 ### `containsKey` 查询是否存在 `key`
-```
+```dart
 Map m = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 
 print( m.containsKey('name') );
@@ -108,7 +108,7 @@ print( m.containsKey('name') );
 true
 ```
 ### `containsValue` 查询是否存在 `value`
-```
+```dart
 Map m = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 
 print( m.containsValue('name') );
@@ -116,7 +116,7 @@ print( m.containsValue('name') );
 true
 ```
 ### `clear` 清空
-```
+```dart
 Map m = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 m.clear();
 
@@ -125,7 +125,7 @@ print( m );
 {}
 ```
 ### `remove` 按 `key` 删除
-```
+```dart
 Map m = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 m.remove('web');
 
@@ -134,7 +134,7 @@ print( m );
 {name: YoungYang}
 ```
 ### `removeWhere` 按条件删除
-```
+```dart
 Map m = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 m.removeWhere(((key, value) => value == 'blog.59young.com'));
 
@@ -143,7 +143,7 @@ print( m );
 {name: YoungYang}
 ```
 ### `update` 更新数据
-```
+```dart
 Map m = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 m.update('name',((value) => '阳九五'));
 
@@ -152,7 +152,7 @@ print( m );
 {name: 阳九五, web: blog.59young.com}
 ```
 ### `updateAll` 批量更新数据
-```
+```dart
 Map m = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 m.updateAll((key, value) => value.toUpperCase());
 
@@ -167,7 +167,7 @@ print( m );
 | `[]` | 取key值 |
 | `[]=` | 赋key值 |
 ### `=` 赋值
-```
+```dart
 Map m = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 m = {'description': 'Hello Dart'};
 
@@ -176,7 +176,7 @@ print( m );
 {description: Hello Dart}
 ```
 ### `[]` 取key值
-```
+```dart
 Map m = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 
 print( m['name'] );
@@ -184,7 +184,7 @@ print( m['name'] );
 YoungYang
 ```
 ### `[]=` 服赋key值
-```
+```dart
 Map m = {'name': 'YoungYang', 'web': 'blog.59young.com'};
 m['name'] = '阳九五';
 

@@ -1,4 +1,4 @@
-# 集合 Map.
+# 集合 Map
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >

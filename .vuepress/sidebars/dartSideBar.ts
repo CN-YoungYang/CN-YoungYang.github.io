@@ -39,4 +39,19 @@ export default [
       "./注释函数表达式/Dart_错误处理.md"
     ],
   },
+  {
+    title: "类库接口继承",
+    collapsable: true,
+    children: [
+      "./类库接口继承/Dart_class.md",
+      "./类库接口继承/Dart_get set.md",
+      "./类库接口继承/Dart_static.md",
+      "./类库接口继承/Dart_abstract.md",
+      "./类库接口继承/Dart_interface.md",
+      "./类库接口继承/Dart_extends.md",
+      "./类库接口继承/Dart_factory.md",
+      "./类库接口继承/Dart_with.md",
+      "./类库接口继承/Dart_lib.md"
+    ],
+  },
 ];

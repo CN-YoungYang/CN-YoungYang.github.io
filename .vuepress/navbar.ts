@@ -13,4 +13,8 @@ export default [
         text: "Flutter",
         link: '/docs/flutter/'
     },
+    {
+        text: "Other",
+        link: '/docs/other/'
+    },
 ] as NavItem[];

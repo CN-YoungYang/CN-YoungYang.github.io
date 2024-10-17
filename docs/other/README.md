@@ -1,4 +1,4 @@
-# 搞七捻三
+# Other
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >

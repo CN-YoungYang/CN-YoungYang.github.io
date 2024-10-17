@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Clash Verge全局扩展脚本 | 阳九五的博客</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="用于记录相关信息">
+    <meta property="article:modified_time" content="2024-10-17T07:52:38.000Z">
+    <meta property="og:site_name" content="阳九五的博客">
+    <meta property="og:title" content="Clash Verge全局扩展脚本">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://blog.59young.com/clash-verge%E5%85%A8%E5%B1%80%E6%89%A9%E5%B1%95%E8%84%9A%E6%9C%AC/">
+    <meta name="twitter:title" content="Clash Verge全局扩展脚本">
+    <meta name="twitter:url" content="https://blog.59young.com/clash-verge%E5%85%A8%E5%B1%80%E6%89%A9%E5%B1%95%E8%84%9A%E6%9C%AC/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="程序员, 编程, 计算机">
+    <meta property="article:tag" content="程序员">
+    <meta name="keywords" content="阳九五的博客,用于记录相关信息">
+    
+    <link rel="preload" href="/assets/css/0.styles.dda7987c.css" as="style"><link rel="preload" href="/assets/js/app.160e846b.js" as="script"><link rel="preload" href="/assets/js/2.2a5fffc1.js" as="script"><link rel="preload" href="/assets/js/56.3b74e60a.js" as="script"><link rel="prefetch" href="/assets/js/1.a3473cb3.js"><link rel="prefetch" href="/assets/js/10.31fe43c3.js"><link rel="prefetch" href="/assets/js/11.da61ab4f.js"><link rel="prefetch" href="/assets/js/12.3444433d.js"><link rel="prefetch" href="/assets/js/13.216e158c.js"><link rel="prefetch" href="/assets/js/14.07bf0faa.js"><link rel="prefetch" href="/assets/js/15.53d4c7a6.js"><link rel="prefetch" href="/assets/js/16.a10aea4e.js"><link rel="prefetch" href="/assets/js/17.a3a20672.js"><link rel="prefetch" href="/assets/js/18.42f97eea.js"><link rel="prefetch" href="/assets/js/19.b1e00da9.js"><link rel="prefetch" href="/assets/js/20.d0b8fdbb.js"><link rel="prefetch" href="/assets/js/21.38b8814f.js"><link rel="prefetch" href="/assets/js/22.bb14da9f.js"><link rel="prefetch" href="/assets/js/23.ceb5a5ff.js"><link rel="prefetch" href="/assets/js/24.2a34d3e0.js"><link rel="prefetch" href="/assets/js/25.15e1f641.js"><link rel="prefetch" href="/assets/js/26.05593ccd.js"><link rel="prefetch" href="/assets/js/27.aa090895.js"><link rel="prefetch" href="/assets/js/28.9fbb98a7.js"><link rel="prefetch" href="/assets/js/29.c9a3c820.js"><link rel="prefetch" href="/assets/js/3.dc953eef.js"><link rel="prefetch" href="/assets/js/30.aa5c7e76.js"><link rel="prefetch" href="/assets/js/31.ebc7d76a.js"><link rel="prefetch" href="/assets/js/32.ebc090e7.js"><link rel="prefetch" href="/assets/js/33.dd9d5826.js"><link rel="prefetch" href="/assets/js/34.681608c6.js"><link rel="prefetch" href="/assets/js/35.81296910.js"><link rel="prefetch" href="/assets/js/36.a19b89e6.js"><link rel="prefetch" href="/assets/js/37.e0170705.js"><link rel="prefetch" href="/assets/js/38.c2cb1cb2.js"><link rel="prefetch" href="/assets/js/39.f6158246.js"><link rel="prefetch" href="/assets/js/4.2f502b73.js"><link rel="prefetch" href="/assets/js/40.df84d6c3.js"><link rel="prefetch" href="/assets/js/41.0d9bdd4c.js"><link rel="prefetch" href="/assets/js/42.844d7ee2.js"><link rel="prefetch" href="/assets/js/43.312934aa.js"><link rel="prefetch" href="/assets/js/44.3e121e61.js"><link rel="prefetch" href="/assets/js/45.d73c8555.js"><link rel="prefetch" href="/assets/js/46.61a81d18.js"><link rel="prefetch" href="/assets/js/47.52f0ed63.js"><link rel="prefetch" href="/assets/js/48.5293cce4.js"><link rel="prefetch" href="/assets/js/49.38a4fc3a.js"><link rel="prefetch" href="/assets/js/5.7b1f056c.js"><link rel="prefetch" href="/assets/js/50.a2619566.js"><link rel="prefetch" href="/assets/js/51.9ec388b8.js"><link rel="prefetch" href="/assets/js/52.1e33b433.js"><link rel="prefetch" href="/assets/js/53.67fd01cb.js"><link rel="prefetch" href="/assets/js/54.ebfa9c89.js"><link rel="prefetch" href="/assets/js/55.2ab81a86.js"><link rel="prefetch" href="/assets/js/57.d80002cb.js"><link rel="prefetch" href="/assets/js/58.e9ad14a7.js"><link rel="prefetch" href="/assets/js/59.f55319ca.js"><link rel="prefetch" href="/assets/js/6.056886f1.js"><link rel="prefetch" href="/assets/js/60.58577f33.js"><link rel="prefetch" href="/assets/js/61.5bee7502.js"><link rel="prefetch" href="/assets/js/62.78247874.js"><link rel="prefetch" href="/assets/js/7.a96cecf9.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.9f962556.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.dda7987c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.png" alt="阳九五的博客" class="logo"> <span class="site-name can-hide">阳九五的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/docs/web/" class="nav-link">
+  Web
+</a></div><div class="nav-item"><a href="/docs/dart/" class="nav-link">
+  Dart
+</a></div><div class="nav-item"><a href="/docs/flutter/" class="nav-link">
+  Flutter
+</a></div><div class="nav-item"><a href="/docs/other/" class="nav-link">
+  Other
+</a></div> <a href="https://github.com/CN-YoungYang/CN-YoungYang.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/docs/web/" class="nav-link">
+  Web
+</a></div><div class="nav-item"><a href="/docs/dart/" class="nav-link">
+  Dart
+</a></div><div class="nav-item"><a href="/docs/flutter/" class="nav-link">
+  Flutter
+</a></div><div class="nav-item"><a href="/docs/other/" class="nav-link">
+  Other
+</a></div> <a href="https://github.com/CN-YoungYang/CN-YoungYang.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/other/" class="sidebar-link">搞七捻三</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>搞七捻三</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/clash-verge%E5%85%A8%E5%B1%80%E6%89%A9%E5%B1%95%E8%84%9A%E6%9C%AC/" aria-current="page" class="active sidebar-link">Clash Verge全局扩展脚本</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="content"><div style="width:100%"><div class="theme-default-content custom-content content__default"><h1 id="clash-verge全局扩展脚本"><a href="#clash-verge全局扩展脚本" class="header-anchor">#</a> Clash Verge全局扩展脚本</h1> <blockquote><p>本文作者：<a href="https://github.com/CN-YoungYang" target="_blank" rel="noopener noreferrer">阳九五<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>本站地址：<a href="https://blog.59young.com" target="_blank" rel="noopener noreferrer">https://blog.59young.com<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <div class="language-javascript line-numbers-mode"><pre class="language-javascript"><code><span class="token comment">// 国内DNS服务器</span>
+<span class="token keyword">const</span> domesticNameservers <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token string">&quot;https://dns.alidns.com/dns-query&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 阿里云公共DNS</span>
+  <span class="token string">&quot;https://doh.pub/dns-query&quot;</span><span class="token punctuation">,</span> <span class="token comment">// 腾讯DNSPod</span>
+  <span class="token string">&quot;https://doh.360.cn/dns-query&quot;</span> <span class="token comment">// 360安全DNS</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// 国外DNS服务器</span>
+<span class="token keyword">const</span> foreignNameservers <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token string">&quot;https://1.1.1.1/dns-query&quot;</span><span class="token punctuation">,</span> <span class="token comment">// Cloudflare(主)</span>
+  <span class="token string">&quot;https://1.0.0.1/dns-query&quot;</span><span class="token punctuation">,</span> <span class="token comment">// Cloudflare(备)</span>
+  <span class="token string">&quot;https://208.67.222.222/dns-query&quot;</span><span class="token punctuation">,</span> <span class="token comment">// OpenDNS(主)</span>
+  <span class="token string">&quot;https://208.67.220.220/dns-query&quot;</span><span class="token punctuation">,</span> <span class="token comment">// OpenDNS(备)</span>
+  <span class="token string">&quot;https://194.242.2.2/dns-query&quot;</span><span class="token punctuation">,</span> <span class="token comment">// Mullvad(主)</span>
+  <span class="token string">&quot;https://194.242.2.3/dns-query&quot;</span> <span class="token comment">// Mullvad(备)</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// DNS配置</span>
+<span class="token keyword">const</span> dnsConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;enable&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;listen&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.0.0.0:1053&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;ipv6&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;use-system-hosts&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;cache-algorithm&quot;</span><span class="token operator">:</span> <span class="token string">&quot;arc&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;enhanced-mode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;fake-ip&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;fake-ip-range&quot;</span><span class="token operator">:</span> <span class="token string">&quot;198.18.0.1/16&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;fake-ip-filter&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token comment">// 本地主机/设备</span>
+    <span class="token string">&quot;+.lan&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;+.local&quot;</span><span class="token punctuation">,</span>
+    <span class="token comment">// Windows网络出现小地球图标</span>
+    <span class="token string">&quot;+.msftconnecttest.com&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;+.msftncsi.com&quot;</span><span class="token punctuation">,</span>
+    <span class="token comment">// QQ快速登录检测失败</span>
+    <span class="token string">&quot;localhost.ptlogin2.qq.com&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;localhost.sec.qq.com&quot;</span><span class="token punctuation">,</span>
+    <span class="token comment">// 微信快速登录检测失败</span>
+    <span class="token string">&quot;localhost.work.weixin.qq.com&quot;</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;default-nameserver&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;223.5.5.5&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;119.29.29.29&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;1.1.1.1&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;8.8.8.8&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;nameserver&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token operator">...</span>domesticNameservers<span class="token punctuation">,</span> <span class="token operator">...</span>foreignNameservers<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;proxy-server-nameserver&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token operator">...</span>domesticNameservers<span class="token punctuation">,</span> <span class="token operator">...</span>foreignNameservers<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;nameserver-policy&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string-property property">&quot;geosite:private,cn,geolocation-cn&quot;</span><span class="token operator">:</span> domesticNameservers<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;geosite:google,youtube,telegram,gfw,geolocation-!cn&quot;</span><span class="token operator">:</span> foreignNameservers
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 规则集通用配置</span>
+<span class="token keyword">const</span> ruleProviderCommon <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;http&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;format&quot;</span><span class="token operator">:</span> <span class="token string">&quot;yaml&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;interval&quot;</span><span class="token operator">:</span> <span class="token number">86400</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 规则集配置</span>
+<span class="token keyword">const</span> ruleProviders <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;reject&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;domain&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/reject.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;icloud&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;domain&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/icloud.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;apple&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;domain&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/apple.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;google&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;domain&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/google.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;proxy&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;domain&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/proxy.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;direct&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;domain&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/direct.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;private&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;domain&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/private.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;gfw&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;domain&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/gfw.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;tld-not-cn&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;domain&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/tld-not-cn.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;telegramcidr&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ipcidr&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/telegramcidr.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;cncidr&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ipcidr&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/cncidr.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;lancidr&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ipcidr&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/lancidr.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;applications&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;classical&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/loyalsoldier/applications.yaml&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;openai&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token operator">...</span>ruleProviderCommon<span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;behavior&quot;</span><span class="token operator">:</span> <span class="token string">&quot;classical&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml&quot;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;./ruleset/blackmatrix7/openai.yaml&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// 规则</span>
+<span class="token keyword">const</span> rules <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token comment">// 自定义规则</span>
+  <span class="token string">&quot;DOMAIN-SUFFIX,bing.com,DIRECT&quot;</span><span class="token punctuation">,</span> <span class="token comment">// Bing</span>
+  <span class="token string">&quot;DOMAIN-SUFFIX,bing.net,DIRECT&quot;</span><span class="token punctuation">,</span> <span class="token comment">// Bing</span>
+  <span class="token string">&quot;DOMAIN-SUFFIX,googleapis.com,PROXY&quot;</span><span class="token punctuation">,</span> <span class="token comment">// Google服务</span>
+  <span class="token string">&quot;DOMAIN-SUFFIX,googleapis.cn,PROXY&quot;</span><span class="token punctuation">,</span> <span class="token comment">// Google服务</span>
+  <span class="token string">&quot;DOMAIN-SUFFIX,gstatic.com,PROXY&quot;</span><span class="token punctuation">,</span> <span class="token comment">// Google静态资源</span>
+  <span class="token string">&quot;DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY&quot;</span><span class="token punctuation">,</span> <span class="token comment">// Google Play下载服务</span>
+  <span class="token string">&quot;DOMAIN-SUFFIX,github.io,PROXY&quot;</span><span class="token punctuation">,</span> <span class="token comment">// Github Pages</span>
+  <span class="token string">&quot;DOMAIN,v2rayse.com,PROXY&quot;</span><span class="token punctuation">,</span> <span class="token comment">// V2rayse节点工具</span>
+  <span class="token comment">// blackmatrix7 规则集</span>
+  <span class="token string">&quot;RULE-SET,openai,PROXY&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// Loyalsoldier 规则集</span>
+  <span class="token string">&quot;RULE-SET,applications,DIRECT&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;RULE-SET,private,DIRECT&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;RULE-SET,reject,广告拦截&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;RULE-SET,icloud,DIRECT&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;RULE-SET,apple,DIRECT&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;RULE-SET,google,DIRECT&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;RULE-SET,proxy,代理模式&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;RULE-SET,gfw,PROXY&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;RULE-SET,tld-not-cn,PROXY&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;RULE-SET,direct,DIRECT&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;RULE-SET,lancidr,DIRECT,no-resolve&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;RULE-SET,cncidr,DIRECT,no-resolve&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;RULE-SET,telegramcidr,PROXY,no-resolve&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 其他规则</span>
+  <span class="token string">&quot;GEOIP,LAN,DIRECT,no-resolve&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;GEOIP,CN,DIRECT,no-resolve&quot;</span><span class="token punctuation">,</span>
+  <span class="token string">&quot;MATCH,代理模式&quot;</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// 代理组通用配置</span>
+<span class="token keyword">const</span> groupBaseOption <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string-property property">&quot;interval&quot;</span><span class="token operator">:</span> <span class="token number">300</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;timeout&quot;</span><span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;url&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://www.google.com/generate_204&quot;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;lazy&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;max-failed-times&quot;</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+  <span class="token string-property property">&quot;hidden&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 程序入口</span>
+<span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token parameter">config</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> proxyCount <span class="token operator">=</span> config<span class="token operator">?.</span>proxies<span class="token operator">?.</span>length <span class="token operator">??</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> proxyProviderCount <span class="token operator">=</span>
+    <span class="token keyword">typeof</span> config<span class="token operator">?.</span><span class="token punctuation">[</span><span class="token string">&quot;proxy-providers&quot;</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token string">&quot;object&quot;</span> <span class="token operator">?</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>config<span class="token punctuation">[</span><span class="token string">&quot;proxy-providers&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>proxyCount <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> proxyProviderCount <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">&quot;配置文件中未找到任何代理&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 覆盖原配置中DNS配置</span>
+  config<span class="token punctuation">[</span><span class="token string">&quot;dns&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> dnsConfig<span class="token punctuation">;</span>
+
+  <span class="token comment">// 覆盖原配置中的代理组</span>
+  config<span class="token punctuation">[</span><span class="token string">&quot;proxy-groups&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token operator">...</span>groupBaseOption<span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;代理模式&quot;</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;select&quot;</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;proxies&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;绕过大陆丨黑名单(GFWlist)&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;绕过大陆丨白名单(Whitelist)&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;icon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token operator">...</span>groupBaseOption<span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;节点选择&quot;</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;select&quot;</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;proxies&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;include-all&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;icon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token operator">...</span>groupBaseOption<span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;广告拦截&quot;</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;select&quot;</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;proxies&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;REJECT&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;DIRECT&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;PROXY&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;icon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/block.svg&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token operator">...</span>groupBaseOption<span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;绕过大陆丨黑名单(GFWlist)&quot;</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;url-test&quot;</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;proxies&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;DIRECT&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;hidden&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;icon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/unknown.svg&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token operator">...</span>groupBaseOption<span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;绕过大陆丨白名单(Whitelist)&quot;</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;url-test&quot;</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;proxies&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;PROXY&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;hidden&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;icon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/unknown.svg&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token operator">...</span>groupBaseOption<span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PROXY&quot;</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;url-test&quot;</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;proxies&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;节点选择&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;hidden&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token string-property property">&quot;icon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/unknown.svg&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 覆盖原配置中的规则</span>
+  config<span class="token punctuation">[</span><span class="token string">&quot;rule-providers&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> ruleProviders<span class="token punctuation">;</span>
+  config<span class="token punctuation">[</span><span class="token string">&quot;rules&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> rules<span class="token punctuation">;</span>
+
+  <span class="token comment">// 返回修改后的配置</span>
+  <span class="token keyword">return</span> config<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br><span class="line-number">165</span><br><span class="line-number">166</span><br><span class="line-number">167</span><br><span class="line-number">168</span><br><span class="line-number">169</span><br><span class="line-number">170</span><br><span class="line-number">171</span><br><span class="line-number">172</span><br><span class="line-number">173</span><br><span class="line-number">174</span><br><span class="line-number">175</span><br><span class="line-number">176</span><br><span class="line-number">177</span><br><span class="line-number">178</span><br><span class="line-number">179</span><br><span class="line-number">180</span><br><span class="line-number">181</span><br><span class="line-number">182</span><br><span class="line-number">183</span><br><span class="line-number">184</span><br><span class="line-number">185</span><br><span class="line-number">186</span><br><span class="line-number">187</span><br><span class="line-number">188</span><br><span class="line-number">189</span><br><span class="line-number">190</span><br><span class="line-number">191</span><br><span class="line-number">192</span><br><span class="line-number">193</span><br><span class="line-number">194</span><br><span class="line-number">195</span><br><span class="line-number">196</span><br><span class="line-number">197</span><br><span class="line-number">198</span><br><span class="line-number">199</span><br><span class="line-number">200</span><br><span class="line-number">201</span><br><span class="line-number">202</span><br><span class="line-number">203</span><br><span class="line-number">204</span><br><span class="line-number">205</span><br><span class="line-number">206</span><br><span class="line-number">207</span><br><span class="line-number">208</span><br><span class="line-number">209</span><br><span class="line-number">210</span><br><span class="line-number">211</span><br><span class="line-number">212</span><br><span class="line-number">213</span><br><span class="line-number">214</span><br><span class="line-number">215</span><br><span class="line-number">216</span><br><span class="line-number">217</span><br><span class="line-number">218</span><br><span class="line-number">219</span><br><span class="line-number">220</span><br><span class="line-number">221</span><br><span class="line-number">222</span><br><span class="line-number">223</span><br><span class="line-number">224</span><br><span class="line-number">225</span><br><span class="line-number">226</span><br><span class="line-number">227</span><br><span class="line-number">228</span><br><span class="line-number">229</span><br><span class="line-number">230</span><br><span class="line-number">231</span><br><span class="line-number">232</span><br><span class="line-number">233</span><br><span class="line-number">234</span><br><span class="line-number">235</span><br><span class="line-number">236</span><br><span class="line-number">237</span><br><span class="line-number">238</span><br><span class="line-number">239</span><br><span class="line-number">240</span><br><span class="line-number">241</span><br><span class="line-number">242</span><br><span class="line-number">243</span><br><span class="line-number">244</span><br><span class="line-number">245</span><br><span class="line-number">246</span><br><span class="line-number">247</span><br><span class="line-number">248</span><br><span class="line-number">249</span><br></div></div></div> <footer class="page-edit" style="margin:0;"><!----> <div class="last-updated"><span class="prefix">最近更新:</span> <span class="time">10/17/2024, 3:52:38 PM</span></div></footer> <!----></div> <div class="toc-container-sidebar"><div class="pos-box"><div class="icon-arrow"></div> <div class="scroll-box" style="max-height:86vh"><div style="font-weight:bold;">Clash Verge全局扩展脚本</div> <hr> <div class="toc-box"><!----></div></div></div></div></div>  <main class="footer"> <div class="copy-right"><span class="name">   |     </span> <a target="_blank" rel="noreferrer">
+          
+        </a></div></main></main> <aside class="page-sidebar"> <div class="page-side-toolbar"></div>  </aside></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.160e846b.js" defer></script><script src="/assets/js/2.2a5fffc1.js" defer></script><script src="/assets/js/56.3b74e60a.js" defer></script>
+  </body>
+</html>

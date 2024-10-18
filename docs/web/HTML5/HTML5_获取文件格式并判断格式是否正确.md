@@ -26,8 +26,10 @@ var type = file.substr(point);
 var file = $("input[name='file']").val();
 // 抽取文件名字
 var filename = file.replace(/.*(\/|\\)/, "");
-// 抽取后缀名
+// 抽取文件信息
 var fileExt = (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename.toLowerCase()) : '';
+// 抽取文件类型
+var fileType = fileExt[0];
 ```
 
 ## 场景
@@ -60,5 +62,6 @@ function isPicFile(fileType) {
 var file = $("input[name='file']").val();
 var filename = file.replace(/.*(\/|\\)/, "");
 var fileExt = (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename.toLowerCase()) : '';
-isPicFile(fileExt);
+var fileType = fileExt[0];
+isPicFile(fileType);
 ```

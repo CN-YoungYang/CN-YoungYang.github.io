@@ -24,8 +24,10 @@ var type = file.substr(point);
 ```javascript
 // 获取文件字符串
 var file = $("input[name='file']").val();
+// 去除查询参数
+var fileWithoutQuery = file.split('?')[0];
 // 抽取文件名字
-var filename = file.replace(/.*(\/|\\)/, "");
+var filename = fileWithoutQuery.replace(/.*(\/|\\)/, "");
 // 抽取文件信息
 var fileExt = (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename.toLowerCase()) : '';
 // 抽取文件类型

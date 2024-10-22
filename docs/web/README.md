@@ -8,3 +8,12 @@
 - [Kimi自动删除历史记录](./HTML5/HTML5_Kimi自动删除历史记录.md)
 - [获取文件格式并判断格式是否正确](./HTML5/HTML5_获取文件格式并判断格式是否正确.md)
 - [响应式列表宽度](./HTML5/HTML5_响应式列表宽度.md)
+
+
+ <iframe  
+ height=850 
+ width=90% 
+ src="https://cn.bing.com/"  
+ frameborder=0  
+ allowfullscreen>
+ </iframe>

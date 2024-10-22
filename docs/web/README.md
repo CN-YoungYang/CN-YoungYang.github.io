@@ -10,7 +10,7 @@
 - [响应式列表宽度](./HTML5/HTML5_响应式列表宽度.md)
 
 
-<script async src="//jsrun.net/HpzKp/embed/all/light"></script>
+
 
 ------------
 

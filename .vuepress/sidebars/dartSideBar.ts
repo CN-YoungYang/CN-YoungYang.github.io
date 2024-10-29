@@ -49,8 +49,8 @@ export default [
       "./类库接口继承/Dart_abstract.md",
       "./类库接口继承/Dart_interface.md",
       "./类库接口继承/Dart_extends.md",
-      "./类库接口继承/Dart_factory.md",
       "./类库接口继承/Dart_with.md",
+      "./类库接口继承/Dart_factory.md",
       "./类库接口继承/Dart_lib.md"
     ],
   },

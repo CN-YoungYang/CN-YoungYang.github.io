@@ -147,9 +147,8 @@ const ruleProviders = {
 // 规则
 const rules = [
   // 自定义规则
-  "DOMAIN-SUFFIX,bing.com,DIRECT", // Bing
-  "DOMAIN-SUFFIX,bing.net,DIRECT", // Bing
-  "DOMAIN-SUFFIX,googleapis.com,PROXY", // Google服务
+  "DOMAIN-KEYWORD,bing.com,DIRECT", // bing
+  "DOMAIN-KEYWORD,bing.net,DIRECT", // bing
   "DOMAIN-SUFFIX,googleapis.cn,PROXY", // Google服务
   "DOMAIN-SUFFIX,gstatic.com,PROXY", // Google静态资源
   "DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY", // Google Play下载服务

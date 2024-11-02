@@ -54,7 +54,6 @@ export default [
       "./类库接口继承/Dart_lib.md"
     ],
   },
-  ,
   {
     title: "进阶使用",
     collapsable: true,

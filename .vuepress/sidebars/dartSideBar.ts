@@ -54,4 +54,17 @@ export default [
       "./类库接口继承/Dart_lib.md"
     ],
   },
+  ,
+  {
+    title: "进阶使用",
+    collapsable: true,
+    children: [
+      "./进阶使用/Dart_泛型 generices.md",
+      "./进阶使用/Dart_异步 async.md",
+      "./进阶使用/Dart_生成器 generate.md",
+      "./进阶使用/Dart_类型定义 typedef.md",
+      "./进阶使用/Dart_空安全 null safe.md",
+      "./进阶使用/Dart_扩展 extension.md"
+    ],
+  },
 ];

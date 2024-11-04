@@ -37,7 +37,9 @@ void main() async {
 
 <!DOCTYPE html> ...
 ```
-> `async` 关键字用于声明一个异步函数. `await` 关键字用于等待一个 `Future` 完成, `Future` 是 Dart 中表示异步操作的对象。
+> `async` 关键字用于声明一个异步函数  
+> `await` 关键字用于等待一个 `Future` 完成  
+> `Future` 是 Dart 中表示异步操作的对象。
 
 ## 异步返回值
 ```dart

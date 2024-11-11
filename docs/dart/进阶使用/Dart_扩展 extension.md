@@ -24,3 +24,46 @@ extension ExtensionName on BaseType {
 5. **多重继承**：Dart 通过接口和扩展类支持某种形式的多重继承。
 
 扩展类是 Dart 语言中一个非常强大的特性，它允许开发者在不修改原始类的情况下增加新功能，使得代码更加模块化和可重用。
+
+## 示例 扩展字符串
+```dart
+extension FileExtension on String {
+  String get fileType {
+    // 获取文件的扩展名
+    final extension = this.split('.').last;
+    switch (extension) {
+      case 'jpg':
+      case 'jpeg':
+      case 'png':
+      case 'gif':
+      case 'bmp':
+        return 'Image';
+      case 'txt':
+        return 'Text';
+      case 'doc':
+      case 'docx':
+        return 'Document';
+      case 'pdf':
+        return 'PDF';
+      case 'mp3':
+      case 'wav':
+        return 'Audio';
+      case 'mp4':
+      case 'avi':
+        return 'Video';
+      default:
+        return 'Unknown';
+    }
+  }
+}
+
+void main() {
+  String imagePath = "example.jpg";
+  String docPath = "example.docx";
+  String unknownPath = "example.unknown";
+
+  print(imagePath.fileType); // 输出: Image
+  print(docPath.fileType); // 输出: Document
+  print(unknownPath.fileType); // 输出: Unknown
+}
+```

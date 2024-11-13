@@ -29,5 +29,12 @@ export default [
     title: "布局练习",
     collapsable: true,
     children: [],
+  },
+  {
+    title: "搞七捻三",
+    collapsable: true,
+    children: [
+      "./搞七捻三/Flutter_gradle编译加速.md",
+    ],
   }
 ];

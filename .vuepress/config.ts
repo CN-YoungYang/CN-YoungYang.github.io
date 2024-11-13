@@ -133,8 +133,4 @@ export default defineConfig({
     // 额外右侧边栏
     // extraSideBar,
   },
-  // 图床配置
-  alias: {
-    '@alias': 'https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master',
-  }
 });

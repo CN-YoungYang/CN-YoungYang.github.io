@@ -8,7 +8,7 @@
 ## 使用软件
 下面这三个软件
 
-![软件图标](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/main/docs/other/Articles/C盘清理思路/Img-01.webp "软件图标")
+![软件图标](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/other/Articles/C盘清理思路/Img-01.webp "软件图标")
 
 ## 使用思路
 1. 使用 [WizTree](https://www.diskanalyzer.com/download) 快速筛选C盘中占用较大的文件，百度搜索xx文件能否删除

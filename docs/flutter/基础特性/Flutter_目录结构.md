@@ -39,6 +39,30 @@ $ flutter create flutter_quickstart_learn
 ```
 > 可以发现 flutter 是一个多端编译框架，各个平台对应的目录都有了
 
+## 目录扩展
+VS Code 安装[`Flutter GetX Generator - 猫哥`](https://marketplace.visualstudio.com/items?itemName=ducafecat.getx-template)插件
+
+右键`lib`文件夹,选择`Getx: Create Common Directory`
+
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/基础特性/Flutter_目录结构/20241114230017.webp =300x)
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/基础特性/Flutter_目录结构/20241114230444.webp)
+
+自动创建开发目录
+```
+├── common // 公共
+│   │── api // 应用程序编程接口
+│   │── i18n // 国际化
+│   │── models // 模型
+│   │── routers // 路由
+│   │── services // 服务
+│   │── style // 样式
+│   │── utils // 工具
+│   └── widgets // 组件
+├── pages // Android 端
+│   └── index.dart // 首页文件
+└── main.dart // 入口文件
+```
+
 ## 运行程序
 ![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/基础特性/Flutter_目录结构/20220617163204.webp =300x)
 

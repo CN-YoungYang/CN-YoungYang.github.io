@@ -50,15 +50,18 @@ VS Code 安装[`Flutter GetX Generator - 猫哥`](https://marketplace.visualstud
 自动创建开发目录
 ```
 ├── common // 公共
-│   │── api // 应用程序编程接口
+│   │── api // 接口
+│   │── components // 组件
+│   │── extension // 扩展
 │   │── i18n // 国际化
 │   │── models // 模型
 │   │── routers // 路由
 │   │── services // 服务
 │   │── style // 样式
 │   │── utils // 工具
+│   │── values // 值
 │   └── widgets // 组件
-├── pages // Android 端
+├── pages // 页面
 │   └── index.dart // 首页文件
 └── main.dart // 入口文件
 ```

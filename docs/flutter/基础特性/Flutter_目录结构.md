@@ -40,7 +40,7 @@ $ flutter create flutter_quickstart_learn
 > 可以发现 flutter 是一个多端编译框架，各个平台对应的目录都有了
 
 ## 运行程序
-![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/基础特性/Flutter_目录结构/20220617163204.webp)
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/基础特性/Flutter_目录结构/20220617163204.webp =100x100)
 
 ## 参考
 - [猫哥-目录结构](https://ducafecat.com/course/flutter-quickstart-learn/2-1-directory)

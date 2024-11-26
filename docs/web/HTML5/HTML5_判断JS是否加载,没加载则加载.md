@@ -11,11 +11,18 @@
 
 ## 代码
 ```javascript
+/**
+* 判断JS是否加载,没加载则加载
+* @param {Object} Options - 设置项.
+* @param {string} Options.scriptName - 脚本文件名.
+* @param {string} Options.cssFile - CSS备用路径.
+* @param {string} Options.jsFile - JS备用路径.
+* @param {string} Options.jsMethodName - JS方法名.
+* @param {string} Options.isRelativePath - 是否相对路径.
+* @return {Promise} 返回的Promise
+*/
 function LoadingJS(Options = {}) {
-
-
     let PromiseJS = new Promise((resolve, reject) => {
-
         /**
         * 加载Css和Js文件
         * @param {String} url - 请求地址
@@ -79,14 +86,18 @@ function LoadingJS(Options = {}) {
             return fixPromise;
         }
 
-        // 监听 performance entry 变动
+
+        /**
+        * 监听 performance entry 变动
+        * @param {String} scriptName - 文件名
+        */
         function checkPerformanceEntries(scriptName) {
             const observer = new PerformanceObserver((list) => {
                 list.getEntries().forEach((entry) => {
                     if (entry.name.includes(scriptName) && entry.entryType === 'resource') {
                         setTimeout(function(){
-                            console.log("Swiper loading complete.");
-                            resolve("Swiper loading complete.");
+                            console.log(`${scriptName} loading complete.`);
+                            resolve(`${scriptName} loading complete.`);
                         },0)
                         observer.disconnect(); // 停止监听
                     }
@@ -96,7 +107,10 @@ function LoadingJS(Options = {}) {
             observer.observe({ entryTypes: ['resource'] });
         }
 
-        // 判断页面是否引用JS文件
+        /**
+        * Html 是否包含脚本
+        * @param {String} scriptName - 文件名
+        */
         function HtmlContainsScript(scriptName) {
             let scripts = document.getElementsByTagName('script');
             for (let i = 0; i < scripts.length; i++) {
@@ -114,7 +128,9 @@ function LoadingJS(Options = {}) {
             return false;
         }
 
-        // 获取当前文件的路径
+        /**
+        * 获取当前文件的路径
+        */
         function getCurrentFilePath(){
             let scriptUrl;
             try {
@@ -138,24 +154,31 @@ function LoadingJS(Options = {}) {
             return scriptUrl;
         }
 
-        let scriptName = 'swiper.min.js';
+        let scriptName = Options.scriptName;
         if (HtmlContainsScript(scriptName)) {
-            if (window.Swiper) {
-                console.log("Swiper loading complete.");
-                resolve("Swiper loading complete.");
+            if (window[Options.jsMethodName]) {
+                console.log(`${scriptName} loading complete.`);
+                resolve(`${scriptName} loading complete.`);
             } else {
-                console.log("Swiper is loading.");
+                console.log(`${scriptName} is loading.`);
                 checkPerformanceEntries(scriptName);
             }
         } else {
-            console.log('Swiper not loaded.');
-            const scriptUrl = getCurrentFilePath();
+            console.log(`${scriptName} not loaded.`);
 
-            addCssJsFile(`${scriptUrl}../css/swiper-bundle.min.css`, 'css');
-            addCssJsFile(`${scriptUrl}swiper-bundle.min.js`, 'js').then(function(){
-                console.log("Swiper loading complete.");
-                resolve("Swiper loading complete.");
+            let scriptUrl = null;
+            if( Options.isRelativePath ){
+                scriptUrl = getCurrentFilePath();
+            }else{
+                scriptUrl = "";
+            }
+
+            addCssJsFile(`${scriptUrl + Options.cssFile}`, 'css');
+            addCssJsFile(`${scriptUrl + Options.jsFile}`, 'js').then(function(){
+                console.log(`${scriptName} loading complete.`);
+                resolve(`${scriptName} loading complete.`);
             });
+            
         }
     });
 
@@ -163,12 +186,11 @@ function LoadingJS(Options = {}) {
 }
 
 
-
 LoadingJS({
     scriptName: "swiper.min.js",
     cssFile: "vendor/swiper/swiper-bundle.min.css",
     jsFile: "vendor/swiper/swiper.min.js",
     jsMethodName: "Swiper",
-    isRelativePath: false
+    isRelativePath: true
 });
 ```

@@ -11,4 +11,11 @@ export default [
       "./HTML5/HTML5_响应式列表宽度.md",
     ],
   },
+  {
+    title: "VUE",
+    collapsable: true,
+    children: [
+      "./VUE/VUE_多个请求时的加载状态.md",
+    ],
+  },
 ];

@@ -37,11 +37,11 @@ class MyApp extends StatelessWidget {
 ```
 - 显示了一个 `10*10` 的正方形，没有收到 `ConstrainedBox` 的影响
 
-![Image](/https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/Flutter_无边界/image-20220617230952463.wenp)
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/基础特性/Flutter_无边界/image-20220617230952463.wenp)
 
 - 约束查看 Container 10*10, 父级约束 最小宽高 100
 
-![Image](/https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/Flutter_无边界/image-20220617231111345.wenp =400x)
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/基础特性/Flutter_无边界/image-20220617231111345.wenp =400x)
 
 ## unbounded 组件
 `unbounded`(无界)组件指的是那些在主轴方向上不限制子组件大小的布局组件。

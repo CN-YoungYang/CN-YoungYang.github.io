@@ -64,3 +64,6 @@ class MyApp extends StatelessWidget {
 
 ## 溢出警告
 在 debug 模式下，如果子组件溢出，控制台会打印警告，并且会在溢出区域显示黑黄相间的条纹
+
+## 参考
+- [猫哥-无边界](https://ducafecat.com/course/flutter-quickstart-learn/2-7-unbounded)

@@ -18,7 +18,17 @@ export default [
   {
     title: "容器布局",
     collapsable: true,
-    children: [],
+    children: [
+      "./容器布局/Flutter_MaterialApp.md",
+      "./容器布局/Flutter_脚手架.md",
+      "./容器布局/Flutter_线性布局.md",
+      "./容器布局/Flutter_盒模型.md",
+      "./容器布局/Flutter_容器.md",
+      "./容器布局/Flutter_弹性布局.md",
+      "./容器布局/Flutter_层叠布局.md",
+      "./容器布局/Flutter_流式布局.md",
+      "./容器布局/Flutter_对齐组件.md",
+    ],
   },
   {
     title: "常用组件",

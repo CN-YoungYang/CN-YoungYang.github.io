@@ -5,6 +5,7 @@
 > 本站地址：[https://blog.59young.com](https://blog.59young.com)
 
 ## HTML
+- [三种按钮样式](./HTML5/HTML5_三种按钮样式.md)
 - [打包下载图片](./HTML5/HTML5_打包下载图片.md)
 - [判断页面是否静态引用某个JS](./HTML5/HTML5_判断页面是否静态引用某个JS.md)
 - [判断JS是否加载,没加载则加载](./HTML5/HTML5_判断JS是否加载,没加载则加载.md)

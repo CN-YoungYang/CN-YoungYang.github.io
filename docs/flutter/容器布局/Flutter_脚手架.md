@@ -149,4 +149,4 @@ class ScaffoldPage extends StatelessWidget {
 }
 ```
 
-![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/布局容器/Flutter_脚手架/image-20220619094948313.webp)
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/布局容器/Flutter_脚手架/image-20220619094948313.webp =400x)

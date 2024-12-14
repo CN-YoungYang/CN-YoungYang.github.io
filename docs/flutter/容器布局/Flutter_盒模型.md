@@ -62,10 +62,11 @@ class MainApp extends StatelessWidget {
               bottomRight: Radius.circular(0), // 右下角半径
             ),
           ),
+          child: const Text("我是内容"), // 内容
         ),
       ),
     );
   }
 }
 ```
-![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/布局容器/Flutter_盒模型/QQ图片20241214201757.webp =500x)
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/布局容器/Flutter_盒模型/QQ图片20241214203217.webp =500x)

@@ -66,7 +66,7 @@ Alignment.bottomRight：表示右下角，值为(1.0, 1.0)。
 | Clip.antiAlias | 进行裁剪并且应用抗锯齿，使得边缘更平滑。这种方式的裁剪速度比Clip.antiAliasWithSaveLayer快，但比Clip.hardEdge慢，通常用于处理圆形和弧形裁剪。 |
 | Clip.antiAliasWithSaveLayer | 进行裁剪、抗锯齿，并且在裁剪之后立即保存一个saveLayer。这种方式的性能开销最大，因为它涉及到额外的缓冲区，所以使用的情况较少。 |
 
-## 示例
+### 示例
 ```dart
 class CustomWidget extends StatelessWidget {
   const CustomWidget({super.key});
@@ -109,4 +109,74 @@ class CustomWidget extends StatelessWidget {
   }
 }
 ```
-[Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/布局容器/Flutter_层叠布局/微信截图_20241215215544.webp)
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/布局容器/Flutter_层叠布局/微信截图_20241215215544.webp)
+
+## Positioned
+若需要精准控制若干个子组件在`Stack`中的位置，则开发者可选用`Positioned`组件。
+> 当`定位`和`宽高`都为空时，`Stack`不会再把`Positioned`这个组件当作“有位置”的组件，而是直接当成`Positioned`不存在，对其子组件按照“无位置”方式处理。
+
+### 定位
+| 名称 | 说明 |
+| ---- | ---- |
+| letf | 距离左边距 |
+| top | 距离上边距 |
+| right | 距离右边距 |
+| bottom | 距离下边距 |
+
+- top和bottom同时传入时，会迫使`Positioned`的child的高度约束至相应的高度。
+- left和right同时传入时，额外增加对其子组件的约束，间接设置了它的宽度
+
+`Positioned`当横轴和纵轴方向其中某个维度没有传入相关参数时，`Stack`会依照自身的`alignment`属性值处理默认的维度。
+
+### 宽高
+| 名称 | 说明 |
+| ---- | ---- |
+| width | 宽度 |
+| height | 高度 |
+
+> 同一纬度的3个属性(横轴left、right、width 和 纵轴top、bottom、height属性)最多只可以传入2个，否则会产生运行时错误。
+
+### 示例
+```dart
+class CustomWidget extends StatelessWidget {
+  const CustomWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 200,
+      height: 200,
+      color: Colors.black26,
+      child: const Stack(
+        children: [
+          // 左上
+          Positioned(
+            left: 20,
+            top: 20,
+            width: 50,
+            height: 50,
+            child: FlutterLogo(),
+          ),
+          // 右下
+          Positioned(
+            right: 20,
+            bottom: 20,
+            width: 50,
+            height: 50,
+            child: FlutterLogo(),
+          ),
+          // 同时设置上、下、左、右
+          Positioned(
+            top: 75,
+            right: 75,
+            bottom: 75,
+            left: 75,
+            child: FlutterLogo(),
+          ), 
+        ],
+      ),
+    );
+  }
+}
+```
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/布局容器/Flutter_层叠布局/微信截图_20241216213217.webp)

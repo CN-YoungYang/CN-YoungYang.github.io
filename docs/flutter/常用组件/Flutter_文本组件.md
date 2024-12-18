@@ -114,7 +114,7 @@ class CustomWidget extends StatelessWidget {
   }
 }
 ```
-![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs.flutter/常用组件/Flutter_文本组件/QQ截图20241218224547.webp)
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/常用组件/Flutter_文本组件/QQ截图20241218224547.webp)
 
 ### 3. textAlign 和 textDirection
 因为文字的对齐不属于文本渲染样式，而是属于排版方式，所以不是通过`style`属性设置,而是通过`textAlign`属性设置。
@@ -154,7 +154,7 @@ class CustomWidget extends StatelessWidget {
   }
 }
 ```
-![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs.flutter/常用组件/Flutter_文本组件/QQ截图20241218225958.webp)
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/常用组件/Flutter_文本组件/QQ截图20241218225958.webp)
 
 ### 4. maxLines 和 softWrap
 | 名称 | 说明 |

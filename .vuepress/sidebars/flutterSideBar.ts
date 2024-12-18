@@ -33,12 +33,17 @@ export default [
   {
     title: "常用组件",
     collapsable: true,
-    children: [],
-  },
-  {
-    title: "布局练习",
-    collapsable: true,
-    children: [],
+    children: [
+      "./常用组件/Flutter_文本组件.md",
+      "./常用组件/Flutter_导入资源.md",
+      "./常用组件/Flutter_图片组件.md",
+      "./常用组件/Flutter_图标组件.md",
+      "./常用组件/Flutter_按钮组件.md",
+      "./常用组件/Flutter_路由管理.md",
+      "./常用组件/Flutter_样式组件.md",
+      "./常用组件/Flutter_手势识别.md",
+      "./常用组件/Flutter_输入框.md",
+    ],
   },
   {
     title: "搞七捻三",

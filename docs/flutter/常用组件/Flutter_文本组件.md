@@ -187,5 +187,164 @@ Text("￥5.00",semanticsLabel:"五元整");
 ```
 
 ## DefaultTextStyle
+`Text`组件的默认样式是由上级`DefaultTextStyle`(默认文本样式)继承而来。
+
+### 1. 基础参数和用法
+`DefaultTextStyle`组件的参数和`Text`组件非常相似。与`Text`组件不同的是，`DefaultTextStyle`不支持直接传入文本内容，而是支持`child`参数，可供传入一个任意组件。
+
+### 2. 合并与继承
+`Text`组件的默认样式是由最临近的上级`DefaultTextStyle`组件所提供，因此当遇到多个`DefaultTextStyle`组件嵌套时，只有最近的那个样式会生效。
+
+如需要新的`DefaultTextStyle`组件继承上级已有的默认样式，则可以借助`DefaultTextStyle.merge()`构造函数进行合并操作，而不是重新开始。
+
+```dart
+class CustomWidget extends StatelessWidget {
+  const CustomWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTextStyle(
+        style: const TextStyle(
+          color: Colors.red,
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.italic,
+        ),
+        child: Column(
+          children: [
+            const DefaultTextStyle(
+              style: TextStyle(
+                color: Colors.black,
+              ),
+              child: Text("人生如逆旅"),
+            ),
+            DefaultTextStyle.merge(
+              style: const TextStyle(
+                color: Colors.black,
+              ),
+              child: const Text("我亦是行人"),
+            )
+          ],
+        ),
+      );
+  }
+}
+```
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/常用组件/Flutter_文本组件/微信截图_20241219221734.webp)
+
+### 3. 动画效果
+若需要在程序运行时做出文本样式的渐变动画效果，则可以考虑使用该组件的动画版： `AnimatedDefaultTextStyle`组件。
+
+相对于`DefaultTextStyle`组件，`AnimatedDefaultTextStyle`组件会多出以下参数
+| 名称 | 说明 |
+| ---- | ---- |
+| duration | Duration 类型，指定动画的持续时间 |
+| curve | Curve 类型，用于指定动画的曲线，即动画的速度变化 |
+| onEnd | VoidCallback 类型，是一个回调函数，每当动画完成时被调用 |
 
 ## RichText
+`RichText`组件可以用来显示一段包含不同样式的文本。
+
+### 1. text属性
+`RichText`组件中需要显示的文本内容由`text`属性设置。不同于`Text`组件，这里`RichText`组件需要传入的文本信息不是简单的字符串(String)类型，而是`TextSpan`类型。
+
+`TextSpan`类型本身是一种可以无限递归的树状结构。
+```dart
+class CustomWidget extends StatelessWidget {
+  const CustomWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: const TextSpan(
+        style: TextStyle(
+          fontSize: 18,
+          color: Colors.black,
+        ),
+        text: "晋太元中",
+        children: [
+          TextSpan(
+            text: "武陵",
+            style: TextStyle(
+              color: Colors.red,
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.underline,
+              decorationThickness: 4,
+            ),
+          ),
+          TextSpan(text: "人捕鱼为业。"),
+          TextSpan(
+            style: TextStyle(
+              fontStyle: FontStyle.italic,
+              fontSize: 14,
+            ),
+            text: "缘溪行，忘路之远近。",
+            children: [
+              TextSpan(text: "忽逢桃花林，"),
+              TextSpan(
+                style: TextStyle(
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w900,
+                ),
+                text: "夹岸",
+              ),
+              TextSpan(text: "数百步，中无杂树，芳草鲜美，"),
+              TextSpan(
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  decorationStyle: TextDecorationStyle.wavy,
+                ),
+                text: "落英缤纷",
+              ),
+              TextSpan(text: "。"),
+            ],
+          ),
+          TextSpan(text: "渔人甚异之。复前行，欲穷其林。"),
+        ],
+      ),
+    );
+  }
+}
+```
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/常用组件/Flutter_文本组件/微信截图_20241219224942.webp)
+
+### 2. Text组件的Text.rich()构造函数
+`Text.rich()`和`RichText`用法大同小异。
+
+区别在于
+- `Text.rich()`**继承**上级`DefaultTextStyle`组件提供的默认样式
+- `RichText`**不继承**上级`DefaultTextStyle`组件提供的默认样式
+
+### 3. 其他属性
+除了`text`属性外，`RichText`组件还同样支持`Text`组件的部分其他属性。
+
+### 4. 触碰检测
+`TextSpan`中的`recognizer`参数支持传入一个`GestureRecognizer`类以便完成`TextSpan`树中某一片段的检测。
+```dart
+class CustomWidget extends StatelessWidget {
+  const CustomWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        style: const TextStyle(fontSize: 20),
+        children: [
+          const TextSpan(text: "我已阅读"),
+          TextSpan(
+            style: const TextStyle(
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.red,
+            ),
+            text: "使用条款",
+            recognizer: TapGestureRecognizer()
+              ..onTap = () => print("检测到用户单机使用条款"),
+          ),
+          const TextSpan(text: "。"),
+        ],
+      ),
+    );
+  }
+}
+```
+![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/常用组件/Flutter_文本组件/微信截图_20241219231211.webp)

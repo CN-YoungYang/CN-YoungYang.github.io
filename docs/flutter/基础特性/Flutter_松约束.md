@@ -2,7 +2,7 @@
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >
-> 本站地址：[https://blog.59young.com](https://blog.59young.com)
+> 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
 松约束(loose constraints)是指在布局过程中，给定的约束条件允许子组件的尺寸可以小于某个特定的值。
 

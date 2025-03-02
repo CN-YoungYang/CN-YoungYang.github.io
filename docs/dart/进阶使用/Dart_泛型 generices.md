@@ -2,7 +2,7 @@
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >
-> 本站地址：[https://blog.59young.com](https://blog.59young.com)
+> 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
 泛型在编译时提供类型安全, 这意味着你可以在编译时捕获类型错误, 而不是在运行时。
 
@@ -35,12 +35,12 @@ V addCache<K, V>(K key, V val) {
 }
 
 main(List<String> args) {
-  var key = addCache('url', 'https://blog.59young.com/');
+  var key = addCache('url', 'https://blog.56321654.xyz/');
   print(key);
 }
 
-url -> https://blog.59young.com/
-https://blog.59young.com/
+url -> https://blog.56321654.xyz/
+https://blog.56321654.xyz/
 ```
 
 ## 构造函数泛型

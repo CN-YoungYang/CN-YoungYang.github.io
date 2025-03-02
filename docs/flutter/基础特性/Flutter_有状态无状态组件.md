@@ -2,7 +2,7 @@
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >
-> 本站地址：[https://blog.59young.com](https://blog.59young.com)
+> 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
 在Dart的Flutter框架中，组件(widgets)是构建用户界面的基本构建块，它们分为有状态(stateful)和无状态(stateless)两种类型
 

@@ -2,7 +2,7 @@
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >
-> 本站地址：[https://blog.59young.com](https://blog.59young.com)
+> 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
 `typedef` 是一种定义函数类型别名的语法糖。它允许你为函数创建一个更简洁的名称，这样可以在代码中更清晰地表达函数的预期类型。
 

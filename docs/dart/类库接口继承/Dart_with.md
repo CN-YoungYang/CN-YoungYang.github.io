@@ -2,7 +2,7 @@
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >
-> 本站地址：[https://blog.59young.com](https://blog.59young.com)
+> 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
 Dart 提供了 with 关键字来实现类似于多继承的功能。with 关键字允许你将一个或多个混入([mixin](https://dart.cn/language/mixins/))应用到类定义中，从而为类添加额外的方法和属性。
 

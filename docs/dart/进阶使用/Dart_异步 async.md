@@ -2,7 +2,7 @@
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >
-> 本站地址：[https://blog.59young.com](https://blog.59young.com)
+> 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
 `Future` 是 Dart 中表示异步操作的对象。它代表了一个将来的值或错误。
 
@@ -16,7 +16,7 @@ import 'package:dio/dio.dart';
 
 void main() {
   Dio dio = Dio();
-  dio.get("https://blog.59young.com/").then((response) {
+  dio.get("https://blog.56321654.xyz/").then((response) {
     print(response.data);
   });
 }
@@ -31,7 +31,7 @@ import 'package:dio/dio.dart';
 
 void main() async {
   Dio dio = Dio();
-  Response<String> response = await dio.get("https://blog.59young.com/");
+  Response<String> response = await dio.get("https://blog.56321654.xyz/");
   print(response.data);
 }
 
@@ -52,7 +52,7 @@ Future<String?> getUrl(String url) async {
 }
 
 void main() async {
-  var content = await getUrl('https://blog.59young.com/');
+  var content = await getUrl('https://blog.56321654.xyz/');
   print(content);
 }
 

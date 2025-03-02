@@ -5,7 +5,7 @@ import footer from "./footer";
 import extraSideBar from "./extraSideBar";
 
 const author = "阳九五";
-const domain = "https://blog.59young.com";
+const domain = "https://blog.56321654.xyz";
 const tags = ["程序员", "编程", "计算机"];
 
 export default defineConfig({

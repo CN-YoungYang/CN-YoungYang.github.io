@@ -2,7 +2,7 @@
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >
-> 本站地址：[https://blog.59young.com](https://blog.59young.com)
+> 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
 `extends` 关键字用于实现类之间的继承关系. 使用 `extends`, 你可以创建一个新类, 它继承了另一个类的属性和方法. 这使得代码复用和扩展现有功能变得更加简单和直接.
 

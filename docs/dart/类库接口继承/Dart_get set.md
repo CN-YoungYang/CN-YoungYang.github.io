@@ -2,7 +2,7 @@
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >
-> 本站地址：[https://blog.59young.com](https://blog.59young.com)
+> 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
 get 和 set 是用来定义属性的 getter 和 setter 方法的关键字。它们允许你控制对类的属性的访问和修改。  
 使用 get 和 set 可以让你在读取或设置属性值时执行额外的逻辑，例如验证、计算或更新其他属性。

@@ -2,7 +2,7 @@
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >
-> 本站地址：[https://blog.59young.com](https://blog.59young.com)
+> 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
 Flutter中的盒模型（Box Model）与Web开发中的盒模型类似，  
 它定义了组件如何根据其内容、内边距（padding）、边框（border）和外边距（margin）来确定自己的尺寸和位置。

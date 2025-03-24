@@ -6,12 +6,12 @@
                 <span class="item-text">{{ item.label }}</span>
             </a>
         </div>
-        <div class="copy-right">
+        <!-- <div class="copy-right">
            <span class="name">{{`${currentYear} &nbsp; |  &nbsp; `}} </span>
             <a :href="government.href" target="_blank" rel="noreferrer" >
               {{government.name}}
             </a>
-        </div>
+        </div> -->
     </main>
 </template>
 

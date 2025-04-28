@@ -132,7 +132,41 @@ Navigator.of(context).pushNamed("/b");
 ```
 `Navigator`会根据路由表，查询到`"/b"`路径所对应的是`MyPage`这个组件（与路径`"/a"`相同，提高了代码的复用性），且应向其`title`参数传入`'Page B'`。同理，若调用`pushNamed("/c")`则会打开`MyOtherPage`组件
 
-
 ### 生成路由
+对于更复杂的路由情况可使用`onGenerateRoute`方法，并根据传入的`RouteSettings`类，动态生成路由。
+
+| `RouteSettings`属性 | 说明 |
+| ---- | ---- |
+| name | 路由名称 |
+| arguments | 附加参数 |
+> 其中`arguments`对应的是导航器的`pushNamed`方法所支持的可选`arguments`参数。
+
+生成路由代码
+```dart
+void main(){
+    runApp(MaterialApp(
+        home: MyHomePage(), // 根目录，即"/"路径
+        onGenerateRoute: (RouteSettings settings) {
+          if( settings.name == "/user" ) {
+            final args = settings.arguments as User;
+            return MaterialPageRoute(builder: (_) => MyUserPage(user: args) );
+          }
+          return null;
+        },
+    ));
+}
+```
+
+按钮部分代码
+```dart
+ElevatedButton(
+  child: Text("Goto Yang"),
+  onPressed: () => Navigator.of(context)
+    .pushNamed("/user", arguments: User("Yang", 24));
+)
+```
+
+由此可见，`onGenerateRoute`方式主要目的是配合`arguments`附加参数，解决普通路由表不易向新页面传附加参数的问题。
+
 ### 未知路由
 ### 示例

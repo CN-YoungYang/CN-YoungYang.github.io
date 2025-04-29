@@ -145,7 +145,7 @@ Navigator.of(context).pushNamed("/b");
 ```dart
 void main(){
     runApp(MaterialApp(
-        home: MyHomePage(), // 根目录，即"/"路径
+        home: MyHomePage(),
         onGenerateRoute: (RouteSettings settings) {
           if( settings.name == "/user" ) {
             final args = settings.arguments as User;
@@ -169,4 +169,162 @@ ElevatedButton(
 由此可见，`onGenerateRoute`方式主要目的是配合`arguments`附加参数，解决普通路由表不易向新页面传附加参数的问题。
 
 ### 未知路由
+当程序出现不存在的路径时，可使用`onUnknownRoute`方法，并根据传入的`RouteSettings`类，生成未知路由类似网站的404页面。
+```dart
+void main(){
+    runApp(MaterialApp(
+        home: MyHomePage(),
+        onUnknownRoute: (RouteSettings settings) {
+          return MaterialPageRoute(builder: (_)=> Text("404") )
+        }
+    ));
+}
+```
+
 ### 示例
+```dart
+import 'package:flutter/material.dart';
+
+// 应用程序的入口函数
+void main() {
+  runApp(MaterialApp(
+    // 设置应用的首页为 MyHomePage
+    home: const MyHomePage(),
+    // 定义命名路由
+    routes: <String, WidgetBuilder>{
+      '/a': (BuildContext context) => const MyPage(title: 'Page A'), // 路由 "/a" 映射到 MyPage，标题为 "Page A"
+      '/b': (BuildContext context) => const MyPage(title: 'Page B'), // 路由 "/b" 映射到 MyPage，标题为 "Page B"
+      '/page/other': (BuildContext context) => const MyOtherPage(),  // 路由 "/page/other" 映射到 MyOtherPage
+    },
+    // 动态路由生成器
+    onGenerateRoute: (RouteSettings settings) {
+      // 如果路由是 "/user"，则解析参数并导航到 MyUserPage
+      if (settings.name == "/user") {
+        final User user = settings.arguments as User; // 获取传递的 User 参数
+        return MaterialPageRoute(
+          builder: (BuildContext context) => MyUserPage(user: user), // 返回 MyUserPage
+        );
+      }
+      return null; // 如果未匹配，返回 null
+    },
+    // 未知路由处理
+    onUnknownRoute: (RouteSettings settings) {
+      // 如果路由未定义，显示 "404 Not Found"
+      return MaterialPageRoute(
+        builder: (BuildContext context) => const Text("404 Not Found"),
+      );
+    },
+  ));
+}
+
+// 主页面 MyHomePage
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("路由演示"), // 应用标题
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 子组件均匀分布
+          children: [
+            // 按钮：通过命名路由打开 Page A
+            ElevatedButton(
+              child: const Text("命名打开 Page A"),
+              onPressed: () => Navigator.pushNamed(context, "/a"),
+            ),
+            // 按钮：通过命名路由打开 Page B
+            ElevatedButton(
+              child: const Text("命名打开 Page B"),
+              onPressed: () => Navigator.pushNamed(context, "/b"),
+            ),
+            // 按钮：通过命名路由打开 Other 页面
+            ElevatedButton(
+              child: const Text("命名打开 Other"),
+              onPressed: () => Navigator.pushNamed(context, "/page/other"),
+            ),
+            // 按钮：直接通过 MaterialPageRoute 打开 Other 页面
+            ElevatedButton(
+              child: const Text("直接打开 Other"),
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder: (BuildContext context) => const MyOtherPage()),
+              ),
+            ),
+            // 按钮：通过命名路由打开 User 页面，并传递参数
+            ElevatedButton(
+              child: const Text("命令打开 User"),
+              onPressed: () {
+                final User user = User("阳九五", 18); // 创建一个 User 对象
+                Navigator.of(context).pushNamed("/user", arguments: user); // 传递参数
+              },
+            ),
+            // 按钮：直接通过 MaterialPageRoute 打开 User 页面，并传递参数
+            ElevatedButton(
+              child: const Text("直接打开 User"),
+              onPressed: () {
+                final User user = User("阳九五", 18); // 创建一个 User 对象
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => MyUserPage(user: user), // 传递参数
+                  ),
+                );
+              },
+            ),
+            // 按钮：打开一个未知路由
+            ElevatedButton(
+              child: const Text("打开未知路由"),
+              onPressed: () => Navigator.of(context).pushNamed("/unknown"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// 页面 MyPage，显示传递的标题
+class MyPage extends StatelessWidget {
+  final String title;
+
+  const MyPage({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(title); // 显示标题
+  }
+}
+
+// 页面 MyOtherPage，显示固定文本
+class MyOtherPage extends StatelessWidget {
+  const MyOtherPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text("My Other Page"); // 显示固定文本
+  }
+}
+
+// 页面 MyUserPage，显示用户信息
+class MyUserPage extends StatelessWidget {
+  final User user;
+
+  const MyUserPage({super.key, required this.user});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text("user: ${user.name}, age: ${user.age}"); // 显示用户的姓名和年龄
+  }
+}
+
+// 用户类 User，包含姓名和年龄
+class User {
+  final String name;
+  final int age;
+
+  User(this.name, this.age);
+}
+```

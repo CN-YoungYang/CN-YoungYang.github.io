@@ -40,7 +40,7 @@ export default [
       "./常用组件/Flutter_图标组件.md",
       "./常用组件/Flutter_按钮组件.md",
       "./常用组件/Flutter_路由管理.md",
-      "./常用组件/Flutter_样式组件.md",
+      "./常用组件/Flutter_样式管理.md",
       "./常用组件/Flutter_手势识别.md",
       "./常用组件/Flutter_输入框.md",
     ],

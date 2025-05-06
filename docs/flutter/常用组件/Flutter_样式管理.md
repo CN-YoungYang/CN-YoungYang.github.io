@@ -1,4 +1,4 @@
-# 样式组件
+# 样式管理
 
 > 本文作者：[阳九五](https://github.com/CN-YoungYang)
 >

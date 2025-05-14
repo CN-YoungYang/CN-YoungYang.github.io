@@ -17,6 +17,7 @@ export default [
     title: "VUE",
     collapsable: true,
     children: [
+      "./VUE/VUE_生产环境调用Vue%20Devtools.md",
       "./VUE/VUE_多个请求时的加载状态.md",
     ],
   },

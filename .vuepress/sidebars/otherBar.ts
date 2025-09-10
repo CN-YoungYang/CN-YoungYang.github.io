@@ -6,7 +6,7 @@ export default [
     children: [
       "./Articles/实用网站.md",
       "./Articles/C盘清理思路.md",
-      "./Articles/Clash节点处理.md",
+      "./Articles/科学软件脚本.md",
       "./Articles/Grok帮你找节点.md",
     ],
   },

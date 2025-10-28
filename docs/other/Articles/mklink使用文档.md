@@ -2,6 +2,8 @@
 
 `mklink` 是一个 Windows 命令行工具，用于创建符号链接（Symbolic Link）。符号链接，也被称为“软链接”，是一个指向另一个文件或目录的特殊文件。这在很多场景下都非常有用，例如，将一个应用程序的配置文件链接到另一个位置，或者将一个大的文件夹移动到另一个磁盘，同时在原来的位置保留一个链接。
 
+**本文档中的所有命令和技巧均适用于 Windows 10 和 Windows 11 环境。**
+
 ## 语法
 
 `mklink` 命令的基本语法如下：
@@ -45,17 +47,50 @@ mklink "C:\Users\YourUser\Documents\MyDoc.txt" "D:\Files\MyDocument.txt"
 
 假设你想将 `C:\Program Files\SomeApp\LargeFolder` 移动到 `D:\BigFolders\SomeApp`，但在原始位置保留一个链接。
 
-首先，移动文件夹：
+**推荐方法：使用 `robocopy` 进行安全的文件夹移动**
+
+`move` 命令在移动文件夹时，如果中途因文件占用等原因失败，会导致文件被分割在源和目标两个位置，非常不安全。因此，强烈推荐使用更专业的 `robocopy` 命令来完成移动操作。
+
+`robocopy` 是 Windows 内置的强大工具，它的 `/MOVE` 参数可以安全地移动文件和目录（先复制，成功后再从源头删除）。
+
+**步骤如下：**
+
+1.  **使用 `robocopy` 移动文件夹：**
+    打开命令提示符（管理员），执行以下命令：
+
+    ```bash
+    robocopy "C:\Program Files\SomeApp\LargeFolder" "D:\BigFolders\SomeApp" /E /MOVE
+    ```
+    -   `/E`：表示复制所有子目录，包括空的子目录。
+    -   `/MOVE`：表示移动文件和目录（移动后会从源位置删除）。
+
+    如果 `robocopy` 成功完成，它会返回一个小于 8 的退出码，并且源文件夹 `LargeFolder` 会被清空。
+
+2.  **创建符号链接：**
+    确认文件夹移动成功后，再创建符号链接。为了保证安全，我们依然可以使用 `&&` 操作符。
+
+    ```bash
+    robocopy "C:\Program Files\SomeApp\LargeFolder" "D:\BigFolders\SomeApp" /E /MOVE && mklink /d "C:\Program Files\SomeApp\LargeFolder" "D:\BigFolders\SomeApp"
+    ```
+    这样，只有在 `robocopy` 成功移动所有文件后，才会执行 `mklink` 命令。
+
+**高级技巧：失败回滚（手动清理）**
+
+您可能会问：如果 `robocopy` 命令本身执行失败了怎么办？它可能会在目标文件夹留下一些不完整的文件。
+
+在这种情况下，最安全的做法是**手动清理目标文件夹**，以确保下次尝试时是一个干净的状态。您可以使用 `rmdir` (或 `rd`) 命令来删除整个文件夹：
 
 ```bash
-move "C:\Program Files\SomeApp\LargeFolder" "D:\BigFolders\SomeApp"
+rmdir /s /q "D:\BigFolders\SomeApp"
 ```
+- `/s`：删除指定目录及其所有子目录和文件。
+- `/q`：安静模式，删除时不需要确认。
 
-然后，创建符号链接：
-
-```bash
-mklink /d "C:\Program Files\SomeApp\LargeFolder" "D:\BigFolders\SomeApp"
-```
+**因此，对于关键操作，最佳实践是：**
+1.  运行 `robocopy` 命令。
+2.  检查命令的输出，如果报告了错误（`robocopy` 的退出码大于等于 8 表示失败）。
+3.  手动运行 `rmdir /s /q <目标文件夹>` 命令进行清理。
+4.  解决问题（如关闭占用文件的程序）后，再重新尝试。
 
 现在，任何访问 `C:\Program Files\SomeApp\LargeFolder` 的程序都会被无缝重定向到 `D:\BigFolders\SomeApp`。
 

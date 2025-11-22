@@ -754,3 +754,428 @@ parsers: # array
           path: ./ruleset/applications.yaml
           interval: 86400
 ```
+
+## Clash Verge自用版本
+```javascript
+// 国内DNS服务器
+const domesticNameservers = [
+  "https://223.5.5.5/dns-query", // 阿里DoH
+  "https://doh.pub/dns-query" // 腾讯DoH，因腾讯云即将关闭免费版IP访问，故用域名
+];
+
+// 国外DNS服务器
+const foreignNameservers = [
+  "https://cloudflare-dns.com/dns-query", // CloudflareDNS
+  "https://77.88.8.8/dns-query", // YandexDNS
+  "https://8.8.4.4/dns-query#ecs=1.1.1.1/24&ecs-override=true", // GoogleDNS
+  "https://208.67.222.222/dns-query#ecs=1.1.1.1/24&ecs-override=true", // OpenDNS
+  "https://9.9.9.9/dns-query", // Quad9DNS
+];
+
+// DNS配置
+const dnsConfig = {
+  "enable": true, // 启用DNS
+  "listen": "0.0.0.0:1053", // 监听地址和端口
+  "ipv6": true, // 支持IPv6
+  "prefer-h3": true, // 优先使用HTTP/3
+  "respect-rules": true, // 遵循规则
+  "use-system-hosts": false, // 不使用系统hosts文件
+  "cache-algorithm": "arc", // 缓存算法
+  "enhanced-mode": "fake-ip", // 增强模式：伪IP
+  "fake-ip-range": "198.18.0.1/16", // 伪IP地址范围
+  "fake-ip-filter": [ // 伪IP过滤规则
+    // 本地主机/设备
+    "+.lan",
+    "+.local",
+    // Windows网络出现小地球图标
+    "+.msftconnecttest.com",
+    "+.msftncsi.com",
+    // QQ快速登录检测失败
+    "localhost.ptlogin2.qq.com",
+    "localhost.sec.qq.com",
+    // 微信快速登录检测失败
+    "localhost.work.weixin.qq.com"
+  ],
+  "default-nameserver": ["223.5.5.5", "1.2.4.8"], // 默认DNS服务器
+  "nameserver": [...foreignNameservers], // 国外DNS服务器
+  "proxy-server-nameserver": [...domesticNameservers], // 代理服务器DNS
+  "direct-nameserver": [...domesticNameservers], // 直连DNS
+  "direct-nameserver-follow-policy": false, // 直连DNS不遵循策略
+  "nameserver-policy": {
+    "geosite:cn": domesticNameservers // 中国站点使用国内DNS
+  }
+};
+// 规则集通用配置
+const ruleProviderCommon = {
+  "type": "http",
+  "format": "yaml",
+  "interval": 86400
+};
+// 规则集配置
+const ruleProviders = {
+  "reject": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt",
+    "path": "./ruleset/loyalsoldier/reject.yaml"
+  },
+  "icloud": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt",
+    "path": "./ruleset/loyalsoldier/icloud.yaml"
+  },
+  "apple": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt",
+    "path": "./ruleset/loyalsoldier/apple.yaml"
+  },
+  "google": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt",
+    "path": "./ruleset/loyalsoldier/google.yaml"
+  },
+  "proxy": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt",
+    "path": "./ruleset/loyalsoldier/proxy.yaml"
+  },
+  "direct": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt",
+    "path": "./ruleset/loyalsoldier/direct.yaml"
+  },
+  "private": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt",
+    "path": "./ruleset/loyalsoldier/private.yaml"
+  },
+  "gfw": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt",
+    "path": "./ruleset/loyalsoldier/gfw.yaml"
+  },
+  "tld-not-cn": {
+    ...ruleProviderCommon,
+    "behavior": "domain",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt",
+    "path": "./ruleset/loyalsoldier/tld-not-cn.yaml"
+  },
+  "telegramcidr": {
+    ...ruleProviderCommon,
+    "behavior": "ipcidr",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt",
+    "path": "./ruleset/loyalsoldier/telegramcidr.yaml"
+  },
+  "cncidr": {
+    ...ruleProviderCommon,
+    "behavior": "ipcidr",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt",
+    "path": "./ruleset/loyalsoldier/cncidr.yaml"
+  },
+  "lancidr": {
+    ...ruleProviderCommon,
+    "behavior": "ipcidr",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt",
+    "path": "./ruleset/loyalsoldier/lancidr.yaml"
+  },
+  "applications": {
+    ...ruleProviderCommon,
+    "behavior": "classical",
+    "url": "https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt",
+    "path": "./ruleset/loyalsoldier/applications.yaml"
+  },
+  "openai": {
+    ...ruleProviderCommon,
+    "behavior": "classical",
+    "url": "https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml",
+    "path": "./ruleset/blackmatrix7/openai.yaml"
+  }
+};
+// 规则
+const rules = [
+  // 自定义规则
+  
+  // "DOMAIN-SUFFIX,qzz.io,DIRECT", // b4u
+  "DOMAIN-SUFFIX,h-e.top,DIRECT", // Elysia
+  "IP-CIDR,192.168.0.10/32,DIRECT", // 10服务器
+  "DOMAIN-SUFFIX,catsapi.com,DIRECT", // catsapi
+  "DOMAIN-SUFFIX,hybgzs.com,DIRECT", // hybgzs
+  "DOMAIN-SUFFIX,zenscaleai.com,DIRECT", // ZenscaleAi
+  "DOMAIN-SUFFIX,chibanban.de,DIRECT", // chiban翻译
+  "DOMAIN-SUFFIX,hongshi1024-l-api.hf.space,DIRECT", // 红石公益
+  "DOMAIN-SUFFIX,x666.me,DIRECT", // 薄荷公益
+  "DOMAIN,alice.dns-dynamic.net,DIRECT", // linux.do/t/topic/934200
+  "DOMAIN,mxlsub.me,DIRECT", // mxlsub
+  "DOMAIN,api.zhongruanapi.dpdns.org,DIRECT", // AI
+  "DOMAIN,share.lzf.email,DIRECT", // share.lzf.email
+  // "DOMAIN-SUFFIX,linux.do,DIRECT", // linux
+  // "IP-CIDR,104.20.16.234/32,DIRECT", // linux
+  // "IP-CIDR,172.66.166.61/32,DIRECT", // linux
+  // "DOMAIN-SUFFIX,temu.com,DIRECT", // temu
+  "DOMAIN-SUFFIX,temu.com,PROXY", // temu
+  "DOMAIN-SUFFIX,test.dnngo.net,DIRECT", // Test Dnngo
+  "DOMAIN-SUFFIX,tinypng.com,DIRECT", // Bing
+  "DOMAIN-SUFFIX,bing.com,DIRECT", // Bing
+  "DOMAIN-SUFFIX,bing.net,DIRECT", // Bing
+  "DOMAIN-SUFFIX,google.com,PROXY", // Google服务
+  "DOMAIN-SUFFIX,googleapis.com,PROXY", // Google服务
+  "DOMAIN-SUFFIX,googleapis.cn,PROXY", // Google服务
+  "DOMAIN-SUFFIX,gstatic.com,PROXY", // Google静态资源
+  "DOMAIN-SUFFIX,xn--ngstr-lra8j.com,PROXY", // Google Play下载服务
+  "DOMAIN-SUFFIX,github.io,PROXY", // Github Pages
+  "DOMAIN,v2rayse.com,PROXY", // V2rayse节点工具
+  // blackmatrix7 规则集
+  "RULE-SET,openai,PROXY",
+  // Loyalsoldier 规则集
+  "RULE-SET,applications,DIRECT",
+  "RULE-SET,private,DIRECT",
+  "RULE-SET,reject,广告拦截",
+  "RULE-SET,icloud,DIRECT",
+  "RULE-SET,apple,DIRECT",
+  "RULE-SET,google,DIRECT",
+  "RULE-SET,proxy,代理模式",
+  "RULE-SET,gfw,PROXY",
+  "RULE-SET,tld-not-cn,PROXY",
+  "RULE-SET,direct,DIRECT",
+  "RULE-SET,lancidr,DIRECT,no-resolve",
+  "RULE-SET,cncidr,DIRECT,no-resolve",
+  "RULE-SET,telegramcidr,PROXY,no-resolve",
+  // 其他规则
+  "GEOIP,LAN,DIRECT,no-resolve",
+  "GEOIP,CN,DIRECT,no-resolve",
+  "MATCH,代理模式"
+];
+// 代理组通用配置
+const groupBaseOption = {
+  "interval": 300,
+  "timeout": 3000,
+  "url": "https://www.google.com/generate_204",
+  "lazy": true,
+  "max-failed-times": 3,
+  "hidden": false
+};
+
+// 写死的自定义节点配置
+const staticCustomProxies = [
+  // {
+  //   name: "Custom-猫猫",
+  //   "type": "ss",
+  //   "server": "xxx.xxx.xxx.xxx",
+  //   "port": 16221,
+  //   "cipher": "xxx",
+  //   "password": "xxx"
+  // }
+];
+
+// 写死的落地节点配置
+const staticLandingProxies = [
+  // {
+  //   "name": "Socks5 猫猫",
+  //   "type": "socks5",
+  //   "server": "xxx.xxx.xxx",
+  //   "port": 10066,
+  //   "username": "xxx",
+  //   "password": "xxx",
+  //   "udp": false
+  // },
+  // // SOCKS5 落地节点
+  // {
+  //   "name": "Socks5 纽约",
+  //   "type": "socks5",
+  //   "server": "xxx.xxx.xxx",
+  //   "port": 5001,
+  //   "username": "xxx",
+  //   "password": "xxx",
+  //   "udp": false
+  // },
+  // // HTTP 落地节点
+  // {
+  //   "name": "HTTP 纽约",
+  //   "type": "http",
+  //   "server": "xxx.xxx.xxx",
+  //   "port": 5001,
+  //   "username": "xxx",
+  //   "password": "xxx",
+  //   "udp": false
+  // }
+];
+
+// 程序入口
+function main(config, profileName) {
+  if (["MQFree.yaml","clash.yaml"].includes(profileName)) {
+    return config;
+  }
+
+  // 检查配置是否已经处理过（避免 Clash 软件重复执行导致卡死）
+  if (config._processed === true) {
+    return config;
+  }
+
+  const proxyCount = config?.proxies?.length ?? 0;
+  const proxyProviderCount =
+    typeof config?.["proxy-providers"] === "object" ? Object.keys(config["proxy-providers"]).length : 0;
+  if (proxyCount === 0 && proxyProviderCount === 0) {
+    throw new Error("配置文件中未找到任何代理");
+  }
+
+  // 机场的节点
+  const urlProxies = [...(config.proxies || [])];
+  
+  // 创建一个函数来检查名称是否存在（包括带编号的变体）
+  const isNameUsed = (nameToCheck, existingSet) => {
+    // 检查精确匹配
+    if (existingSet.has(nameToCheck)) return true;
+    
+    // 检查是否存在 "name [n]" 格式的变体
+    for (const existing of existingSet) {
+      // 移除可能的 [n] 后缀
+      const baseExisting = existing.replace(/\s*\[\d+\]$/, '');
+      if (baseExisting === nameToCheck) return true;
+    }
+    
+    return false;
+  };
+  
+  // 获取唯一的节点名称
+  const getUniqueName = (originalName, existingSet) => {
+    let name = originalName;
+    let counter = 1;
+
+    // 如果原始名称已存在（包括带编号的变体），从编号开始
+    if (isNameUsed(originalName, existingSet)) {
+      counter = 2;
+      name = `${originalName} [${counter}]`;
+    }
+
+    // 继续递增直到找到唯一名称
+    while (existingSet.has(name)) {
+      counter++;
+      name = `${originalName} [${counter}]`;
+    }
+
+    return name;
+  };
+  
+  // 合并静态自定义节点时检查名称冲突
+  const existingNames = new Set(urlProxies.map(p => p.name));
+  const mergedCustomProxies = staticCustomProxies.map(proxy => {
+    const uniqueName = getUniqueName(proxy.name, existingNames);
+    existingNames.add(uniqueName);
+    return { ...proxy, name: uniqueName };
+  });
+  
+  urlProxies.push(...mergedCustomProxies);
+  const urlProxiesName = urlProxies.map(item => item.name);
+
+  // 合并落地节点时也需要检查名称冲突
+  const mergedLandingProxies = staticLandingProxies.map(proxy => {
+    const uniqueName = getUniqueName(proxy.name, existingNames);
+    existingNames.add(uniqueName);
+    return { ...proxy, name: uniqueName };
+  });
+  
+  // 添加写死的节点到配置
+  config.proxies = [...urlProxies, ...mergedLandingProxies];
+  const relayProxies = mergedLandingProxies.map(item => {
+    return {
+      ...groupBaseOption,
+      "name": "Relay - " + item.name,
+      "type": "relay",
+      "proxies": ["节点选择", item.name],
+      "hidden": true,
+    }
+  });
+  const relayProxiesName = relayProxies.map(item => item.name);
+
+  // 覆盖原配置中DNS配置
+  config["dns"] = dnsConfig;
+
+  // 覆盖原配置中的代理组
+  config["proxy-groups"] = [
+    {
+      ...groupBaseOption,
+      "name": "落地模式",
+      "type": "select",
+      "proxies": ["禁止落地"].concat(relayProxiesName),
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "禁止落地",
+      "type": "url-test",
+      "proxies": ["节点选择"],
+      "hidden": true,
+    },
+    ...relayProxies,
+    {
+      ...groupBaseOption,
+      "name": "代理模式",
+      "type": "select",
+      "proxies": ["绕过大陆丨黑名单(GFWlist)", "绕过大陆丨白名单(Whitelist)"],
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "节点选择",
+      "type": "select",
+      "proxies": urlProxiesName,
+      // "proxies": [],
+      // "include-all": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "广告拦截",
+      "type": "select",
+      "proxies": ["REJECT", "DIRECT", "PROXY"],
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/block.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "绕过大陆丨黑名单(GFWlist)",
+      "type": "url-test",
+      "proxies": ["DIRECT"],
+      "hidden": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/unknown.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "绕过大陆丨白名单(Whitelist)",
+      "type": "url-test",
+      "proxies": ["PROXY"],
+      "hidden": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/unknown.svg"
+    },
+    {
+      ...groupBaseOption,
+      "name": "PROXY",
+      "type": "url-test",
+      "proxies": ["落地模式"],
+      "hidden": true,
+      "icon": "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/unknown.svg"
+    }
+  ];
+
+  // 覆盖原配置中的规则
+  config["rule-providers"] = ruleProviders;
+  config["rules"] = rules;
+
+  // 标记配置已处理（防止 Clash 软件重复执行）
+  config._processed = true;
+
+  // 返回修改后的配置
+  return config;
+}
+
+// 导出 main 函数供 Node.js 使用
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { main };
+}
+```

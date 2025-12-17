@@ -10,6 +10,7 @@ export default [
       "./Articles/科学软件脚本.md",
       "./Articles/Grok帮你找节点.md",
       "./Articles/mklink使用文档.md",
+      "./Articles/B站自动点赞.md",
     ],
   },
 ];

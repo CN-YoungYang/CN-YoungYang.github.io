@@ -10,3 +10,4 @@
 - [科学软件脚本](./Articles/科学软件脚本.md)
 - [Grok帮你找节点](./Articles/Grok帮你找节点.md)
 - [mklink使用文档](./Articles/mklink使用文档.md)
+- [B站自动点赞](./Articles/B站自动点赞.md)

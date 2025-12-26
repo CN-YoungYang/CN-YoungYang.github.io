@@ -11,3 +11,10 @@
 - [Grok帮你找节点](./Articles/Grok帮你找节点.md)
 - [mklink使用文档](./Articles/mklink使用文档.md)
 - [B站自动点赞](./Articles/B站自动点赞.md)
+
+
+远程 MAS 脚本 - 激活WINDOW
+```Powershell
+Set-ExecutionPolicy RemoteSigned
+irm https://get.activated.win | iex
+```

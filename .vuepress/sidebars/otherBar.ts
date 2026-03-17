@@ -14,6 +14,7 @@ export default [
     collapsable: true,
     children: [
       "./Articles/实用网站.md",
+      "./Articles/书籍下载网站合集.md",
       "./Articles/科学软件脚本.md",
       "./Articles/浏览器扩展和脚本.md",
     ],

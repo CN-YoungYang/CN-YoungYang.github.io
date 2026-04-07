@@ -10,7 +10,7 @@
 
 ![软件图标](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/other/Articles/C盘清理思路/Img-01.webp "软件图标")
 
-## 使用思路
+### 使用思路
 1. 使用 [WizTree](https://www.diskanalyzer.com/download) 快速筛选C盘中占用较大的文件，百度搜索xx文件能否删除
 2. 使用 [Dism++ (github.com)](https://github.com/Chuyu-Team/Dism-Multi-language/releases) 无脑清理C盘空间
     > 不能说无脑吧，进入软件之后勾选需要清理的选项就行（半无脑）
@@ -19,3 +19,8 @@
 4. 打开qq和微信的设置，将存储内容通过设置（不要直接cv，没用，得改设置）移动到了D盘
 5. 新软件到手了先进设置查查看有没有存储设置，如果有的话改成非C盘的路径
 6. [DiskGenius](https://www.diskgenius.cn/) 划分空间给C盘，但是C盘不支持，通过PE系统可以进行C盘扩容
+
+## 另一条线路
+如果不想和上面的思路混用，也可以单独使用 [C Cleaner Plus](https://github.com/Kiowx/c_cleaner_plus) 这一套方案。
+
+它支持垃圾文件、大文件、重复文件、系统残留等扫描清理，工具介绍可参考 [linux.do 讨论帖](https://linux.do/t/topic/1631936)。

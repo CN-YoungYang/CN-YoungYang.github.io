@@ -4,7 +4,7 @@
 
 ## 项目概览
 
-个人技术博客(阳九五的博客,<https://blog.56321654.xyz>),基于 **VuePress 1.x** 构建,部署到 GitHub Pages。内容以 markdown 形式存放在 `docs/` 目录;`docs/` 下的四个栏目(web/dart/flutter/other)以及 `docs/other/Articles`(系统工具/网络工具/自动化脚本)各有一个 README 索引列出其文章。日常在此仓库的工作几乎全部是**编写/编辑中文 markdown 文章、维护侧边栏与 README 索引**——构建配置与主题比较稳定,很少改动。
+个人技术博客(阳九五的博客,<https://blog.56321654.xyz>),基于 **VuePress 1.x** 构建,部署到 GitHub Pages。内容以 markdown 形式存放在 `docs/` 目录;`docs/` 下的五个栏目(web/dart/flutter/typescript/other)以及 `docs/other/Articles`(系统工具/网络工具/自动化脚本)各有一个 README 索引列出其文章。日常在此仓库的工作几乎全部是**编写/编辑中文 markdown 文章、维护侧边栏与 README 索引**——构建配置与主题比较稳定,很少改动。
 
 ## 常用命令
 
@@ -20,16 +20,17 @@ npm run docs:build    # 生产构建,输出到 .vuepress/dist/
 
 ## 仓库结构
 
-- `docs/` — 实际内容。四个顶级栏目,与导航栏链接一一对应:
+- `docs/` — 实际内容。五个顶级栏目,与导航栏链接一一对应:
   - `docs/web/` → `/web`(HTML5、VUE)
   - `docs/dart/` → `/dart`
   - `docs/flutter/` → `/flutter`
+  - `docs/typescript/` → `/typescript`(学习资源)
   - `docs/other/` → `/other`(收录于 `docs/other/Articles/` 下的工具合集,改动最频繁)
-- 每个栏目都有一个 `README.md` 作为手工维护的文章索引,另有若干子目录存放文章。同一主题的文章共享统一前缀(`HTML5_`、`Dart_`、`Flutter_`);`docs/other/Articles/*.md` 无前缀。
+- 每个栏目都有一个 `README.md` 作为手工维护的文章索引,另有若干子目录存放文章。同一主题的文章共享统一前缀(`HTML5_`、`Dart_`、`Flutter_`、`TypeScript_`);`docs/other/Articles/*.md` 无前缀。
 - `.vuepress/` — 站点配置(不属于发布内容):
   - `config.ts` — 根配置:标题/描述、SEO/sitemap/feed/tags/code-copy/baidu-autopush 等插件、`themeConfig`、域名 `https://blog.56321654.xyz`。
   - `navbar.ts`、`sidebar.ts`、`footer.ts`、`extraSideBar.ts` — 拆分出的站点导航模块,由 `config.ts` 引入。
-  - `sidebars/*.ts` — 每个顶级栏目一份侧边栏配置(`webSideBar`、`dartSideBar`、`flutterSideBar`、`otherBar`),在 `sidebar.ts` 中统一挂载。
+  - `sidebars/*.ts` — 每个顶级栏目一份侧边栏配置(`webSideBar`、`dartSideBar`、`flutterSideBar`、`typescriptSideBar`、`otherBar`),在 `sidebar.ts` 中统一挂载。
   - `theme/` — 对 `@vuepress/theme-default` 的小幅定制(新增了 Footer、ExtraSidebar、PageSidebarToc 组件,`index.js` 使用 `extend: '@vuepress/theme-default'`)。
   - `public/` — 静态资源:`logo.png`、`favicon.ico`、`extraSideBar.ts` 引用的二维码图片。
   - `dist/` — 构建产物(已被 gitignore)。
@@ -46,7 +47,7 @@ npm run docs:build    # 生产构建,输出到 .vuepress/dist/
 
 ## 文章规范
 
-- 文件名使用栏目前缀:`Web` → `HTML5_...`/`VUE_...`,`Dart` → `Dart_...`,`Flutter` → `Flutter_...`。
+- 文件名使用栏目前缀:`Web` → `HTML5_...`/`VUE_...`,`Dart` → `Dart_...`,`Flutter` → `Flutter_...`,`TypeScript` → `TypeScript_...`。
 - 文章标题:以 `# 标题` 作为第一行(VuePress 据此推导页面标题;这些文章不使用 YAML frontmatter)。
 - 标题下通常跟一段统一的作者/地址引用——并非每篇新文章都必须,但存在时应保持该风格:
 

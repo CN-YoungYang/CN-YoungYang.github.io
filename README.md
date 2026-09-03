@@ -13,3 +13,4 @@ permalink: /
 - [Web](/web)
 - [Dart](/dart)
 - [Flutter](/flutter)
+- [TypeScript](/typescript)

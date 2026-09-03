@@ -14,6 +14,10 @@ export default [
         link: '/docs/flutter/'
     },
     {
+        text: "TypeScript",
+        link: '/docs/typescript/'
+    },
+    {
         text: "Other",
         link: '/docs/other/'
     },

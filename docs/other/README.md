@@ -14,6 +14,10 @@
 - [**mklink使用文档**](./Articles/mklink使用文档.md) - Windows 符号链接命令详解与应用场景
 - [**常用的bat命令**](./Articles/常用的bat命令.md) - 批处理脚本常用命令汇总
 
+### AI 编程工具
+
+- [**mattpocock/skills 使用文档**](./Articles/mattpocock-skills使用文档.md) - 面向 Claude Code、Codex 等编程代理的 Skills 安装、配置与工程工作流
+
 ### 网络工具
 
 - [**实用网站**](./Articles/实用网站.md) - 精选实用网站资源推荐

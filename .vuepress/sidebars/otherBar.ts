@@ -10,6 +10,13 @@ export default [
     ],
   },
   {
+    title: "AI 编程工具",
+    collapsable: true,
+    children: [
+      "./Articles/mattpocock-skills使用文档.md",
+    ],
+  },
+  {
     title: "网络工具",
     collapsable: true,
     children: [

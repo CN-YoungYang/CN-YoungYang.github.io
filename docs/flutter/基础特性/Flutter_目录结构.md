@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文介绍 Flutter 项目创建、目录结构和常见工程目录。
+
 ## 创建Flutter项目
 - 使用`VS Code`创建项目
 `cmd + shift + p` 命令模式下 `flutter new project`
@@ -20,7 +22,7 @@ $ flutter create flutter_quickstart_learn
 ```
 
 ## 目录文件说明
-```
+```text
 ├── android // Android 端
 ├── build // 编译输出目录
 ├── ios // IOS 端
@@ -48,7 +50,7 @@ VS Code 安装[`Flutter GetX Generator - 猫哥`](https://marketplace.visualstud
 ![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/基础特性/Flutter_目录结构/20241114230444.webp)
 
 自动创建开发目录
-```
+```text
 ├── common // 公共
 │   │── api // 接口
 │   │── components // 组件

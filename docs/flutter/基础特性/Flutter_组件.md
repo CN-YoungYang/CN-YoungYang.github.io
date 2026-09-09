@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文介绍 Flutter Widget 的基本概念、分类和官方组件资源。
+
 ## UI组件
 ### 文档
 - [https://docs.flutter.cn/ui/widgets](https://docs.flutter.cn/ui/widgets)  

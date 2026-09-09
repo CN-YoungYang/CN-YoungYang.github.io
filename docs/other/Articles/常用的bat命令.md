@@ -1,5 +1,9 @@
 # 常用的bat命令
 
+> 本文作者：[阳九五](https://github.com/CN-YoungYang)
+>
+> 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
+
 ## Windows命令兼容性说明
 
 本文档中的bat命令主要针对Windows系统设计，不同Windows版本的兼容性如下：
@@ -61,7 +65,7 @@
 - 使用`rem`或`::`添加注释
 
 ### 简单示例
-```bat
+```batch
 @echo off
 echo 这是一个简单的bat脚本示例
 echo 当前时间是：%date% %time%
@@ -78,7 +82,7 @@ pause
 ## 系统管理
 
 ### 重启资源管理器
-```bat
+```batch
 taskkill /f /im explorer.exe
 start explorer.exe
 ```
@@ -95,7 +99,7 @@ start explorer.exe
 ---
 
 ### 关闭计算机
-```bat
+```batch
 shutdown /s /t 0
 ```
 
@@ -115,7 +119,7 @@ shutdown /s /t 0
 ---
 
 ### 重启计算机
-```bat
+```batch
 shutdown /r /t 0
 ```
 
@@ -131,7 +135,7 @@ shutdown /r /t 0
 ---
 
 ### 注销当前用户
-```bat
+```batch
 shutdown /l
 ```
 
@@ -146,7 +150,7 @@ shutdown /l
 ---
 
 ### 锁定计算机
-```bat
+```batch
 rundll32.exe user32.dll,LockWorkStation
 ```
 
@@ -163,7 +167,7 @@ rundll32.exe user32.dll,LockWorkStation
 ---
 
 ### 查看系统信息
-```bat
+```batch
 systeminfo
 ```
 
@@ -184,7 +188,7 @@ systeminfo
 ---
 
 ### 查看IP配置
-```bat
+```batch
 ipconfig
 ```
 
@@ -205,7 +209,7 @@ ipconfig
 ---
 
 ### 刷新DNS缓存
-```bat
+```batch
 ipconfig /flushdns
 ```
 
@@ -220,7 +224,7 @@ ipconfig /flushdns
 ---
 
 ### ping测试网络连接
-```bat
+```batch
 ping www.baidu.com
 ```
 
@@ -244,7 +248,7 @@ ping www.baidu.com
 ## 文件和文件夹操作
 
 ### 创建文件夹
-```bat
+```batch
 mkdir 新文件夹名
 ```
 
@@ -259,7 +263,7 @@ mkdir 新文件夹名
 ---
 
 ### 删除文件夹
-```bat
+```batch
 rmdir 文件夹名
 ```
 
@@ -278,7 +282,7 @@ rmdir 文件夹名
 ---
 
 ### 复制文件
-```bat
+```batch
 copy 源文件 目标文件
 ```
 
@@ -298,7 +302,7 @@ copy 源文件 目标文件
 ---
 
 ### 复制文件夹及其内容
-```bat
+```batch
 xcopy 源文件夹 目标文件夹 /e /i
 ```
 
@@ -320,7 +324,7 @@ xcopy 源文件夹 目标文件夹 /e /i
 ---
 
 ### 删除文件
-```bat
+```batch
 del 文件名
 ```
 
@@ -343,7 +347,7 @@ del 文件名
 ## 进程管理
 
 ### 查看运行中的进程
-```bat
+```batch
 tasklist
 ```
 
@@ -365,7 +369,7 @@ tasklist
 ---
 
 ### 结束指定进程
-```bat
+```batch
 taskkill /f /im 进程名.exe
 ```
 
@@ -389,7 +393,7 @@ taskkill /f /im 进程名.exe
 ## 环境变量
 
 ### 查看所有环境变量
-```bat
+```batch
 set
 ```
 
@@ -404,7 +408,7 @@ set
 ---
 
 ### 设置临时环境变量
-```bat
+```batch
 set 变量名=变量值
 ```
 
@@ -422,7 +426,7 @@ set 变量名=变量值
 ## 磁盘管理
 
 ### 查看磁盘使用情况
-```bat
+```batch
 wmic logicaldisk get size,freespace,caption
 ```
 
@@ -442,7 +446,7 @@ wmic logicaldisk get size,freespace,caption
 ---
 
 ### 磁盘检查
-```bat
+```batch
 chkdsk C: /f
 ```
 
@@ -466,7 +470,7 @@ chkdsk C: /f
 ## 网络管理
 
 ### 查看网络连接
-```bat
+```batch
 netstat -an
 ```
 
@@ -488,7 +492,7 @@ netstat -an
 ---
 
 ### 映射网络驱动器
-```bat
+```batch
 net use Z: \\服务器名\共享文件夹
 ```
 
@@ -510,7 +514,7 @@ net use Z: \\服务器名\共享文件夹
 ---
 
 ### 远程桌面连接
-```bat
+```batch
 mstsc /v:远程服务器IP或主机名
 ```
 
@@ -533,7 +537,7 @@ mstsc /v:远程服务器IP或主机名
 ---
 
 ### 使用凭据连接远程服务器
-```bat
+```batch
 cmdkey /generic:TERMSRV/远程服务器IP /user:用户名 /pass:密码
 mstsc /v:远程服务器IP
 ```
@@ -552,7 +556,7 @@ mstsc /v:远程服务器IP
 ---
 
 ### SSH连接远程服务器
-```bat
+```batch
 ssh 用户名@远程服务器IP
 ```
 
@@ -574,7 +578,7 @@ ssh 用户名@远程服务器IP
 ---
 
 ### Telnet连接远程服务器
-```bat
+```batch
 telnet 远程服务器IP 端口号
 ```
 
@@ -591,7 +595,7 @@ telnet 远程服务器IP 端口号
 ---
 
 ### FTP连接远程服务器
-```bat
+```batch
 ftp 远程服务器IP
 ```
 
@@ -616,7 +620,7 @@ ftp 远程服务器IP
 ---
 
 ### PowerShell远程连接
-```bat
+```batch
 powershell -Command "Enter-PSSession -ComputerName 远程服务器IP -Credential 用户名"
 ```
 
@@ -635,7 +639,7 @@ powershell -Command "Enter-PSSession -ComputerName 远程服务器IP -Credential
 ---
 
 ### WinRM远程连接
-```bat
+```batch
 winrs -r:远程服务器IP -u:用户名 -p:密码 命令
 ```
 
@@ -656,7 +660,7 @@ winrs -r:远程服务器IP -u:用户名 -p:密码 命令
 ## 远程服务器管理
 
 ### 批量连接远程服务器脚本示例
-```bat
+```batch
 @echo off
 setlocal enabledelayedexpansion
 
@@ -697,7 +701,7 @@ pause
 ---
 
 ### 远程文件传输脚本
-```bat
+```batch
 @echo off
 setlocal
 
@@ -744,7 +748,7 @@ pause
 ## 实用脚本示例
 
 ### 批量重命名文件
-```bat
+```batch
 @echo off
 setlocal enabledelayedexpansion
 set count=1
@@ -770,7 +774,7 @@ for %%f in (*.jpg) do (
 ---
 
 ### 清理系统临时文件
-```bat
+```batch
 @echo off
 del /q /f /s %temp%\*
 del /q /f /s C:\Windows\Temp\*
@@ -792,7 +796,7 @@ pause
 ---
 
 ### 自动设置IP地址
-```bat
+```batch
 @echo off
 netsh interface ip set address "本地连接" static 192.168.1.100 255.255.255.0 192.168.1.1
 netsh interface ip set dns "本地连接" static 8.8.8.8
@@ -817,7 +821,7 @@ echo IP地址设置完成
 ---
 
 ### 自动获取IP地址
-```bat
+```batch
 @echo off
 netsh interface ip set address "本地连接" dhcp
 netsh interface ip set dns "本地连接" dhcp

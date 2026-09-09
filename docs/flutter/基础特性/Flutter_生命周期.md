@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文整理 StatefulWidget、StatelessWidget 和应用生命周期中的关键回调。
+
 ## StatefulWidget 生命周期
 ![Image](https://raw.githubusercontent.com/CN-YoungYang/BlogAssets/refs/heads/master/docs/flutter/基础特性/Flutter_生命周期/000129.webp)
 

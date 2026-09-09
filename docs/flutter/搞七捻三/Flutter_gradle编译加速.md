@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文记录 Flutter Android 工程中 Gradle 编译加速的配置方法。
+
 
 - 打开文件 `build.gradle`
 

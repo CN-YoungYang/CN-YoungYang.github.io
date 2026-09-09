@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文介绍 Dart 核心库、第三方库和项目模块的导入方式。
+
 ## 导入核心库
 ```dart
 import 'dart:io';
@@ -13,8 +15,6 @@ void main() {
   var content = f.readAsStringSync();
   print(content);
 }
-
-# Dart 语言学习示例
 ```
 
 ## 导入第三方库

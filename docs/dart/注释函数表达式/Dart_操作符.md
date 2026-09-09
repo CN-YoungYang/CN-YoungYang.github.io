@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文整理 Dart 常用操作符及其优先级和使用场景。
+
 | 描述 | 操作符 |
 | ---- | ---- |
 | 后缀操作 | `expr++` `expr--` `expr()` `expr[]` `expr.` `expr?.` |

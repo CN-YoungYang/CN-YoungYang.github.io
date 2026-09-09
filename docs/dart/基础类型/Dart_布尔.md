@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文介绍 Dart 布尔值及其逻辑、关系运算。
+
 ## bool
 ### 声明
 只有两个对象是布尔类型: true 和 false  

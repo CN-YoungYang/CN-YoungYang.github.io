@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文记录用于 B 站页面自动点赞的用户脚本示例。
+
 
 ```js
 // ==UserScript==

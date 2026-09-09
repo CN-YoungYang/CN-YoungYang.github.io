@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文介绍 Flutter 约束传递、尺寸计算和位置确定的基本规则。
+
 ## 让子元素竟可能的大，撑满父元素
 - 在 main 函数中，直接创建 Container 显示
 ```dart

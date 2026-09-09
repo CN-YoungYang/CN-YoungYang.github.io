@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文记录在 Vue 生产环境中查找并调用 Vue Devtools 的方法。
+
 ```js
 function init() {
   var node;

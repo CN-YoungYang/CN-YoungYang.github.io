@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文介绍 Dart `DateTime` 和 `Duration` 的创建、运算和比较。
+
 [DateTime class](https://api.dart.dev/stable/3.5.3/dart-core/DateTime-class.html) 和 [Duration class](https://api.dart.dev/stable/3.5.3/dart-core/Duration-class.html)
 
 ## 当前时间

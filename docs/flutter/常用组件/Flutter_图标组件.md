@@ -10,7 +10,7 @@ Icon 组件用来显示可缩放的图标，不会像图片一样失真，还能
 
 ### 开启
 在`pubspec.yaml`文件里面设置
-```sh
+```yaml
 # The following section is specific to Flutter.
 flutter:
   # The following line ensures that the Material Icons font is

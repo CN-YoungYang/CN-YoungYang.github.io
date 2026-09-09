@@ -1,5 +1,9 @@
 # mklink 命令详解
 
+> 本文作者：[阳九五](https://github.com/CN-YoungYang)
+>
+> 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
+
 `mklink` 是一个 Windows 命令行工具，用于创建符号链接（Symbolic Link）。符号链接，也被称为“软链接”，是一个指向另一个文件或目录的特殊文件。这在很多场景下都非常有用，例如，将一个应用程序的配置文件链接到另一个位置，或者将一个大的文件夹移动到另一个磁盘，同时在原来的位置保留一个链接。
 
 **本文档中的所有命令和技巧均适用于 Windows 10 和 Windows 11 环境。**
@@ -185,7 +189,7 @@ dir
 -   `<JUNCTION>`：目录联接。
 
 **CMD 示例输出：**
-```
+```text
 2023/10/27  09:45    <SYMLINKD>     MyLinkedFolder [D:\RealFolder]
 2023/10/27  09:50    <JUNCTION>     MyJunction     [E:\AnotherFolder]
 ```
@@ -204,7 +208,7 @@ dir
 在输出的 `Mode` 列中，如果包含字母 `l`，则表示该项是一个链接（符号链接或联接点）。
 
 **PowerShell 示例输出：**
-```
+```text
 Mode           LastWriteTime         Length Name
 ----           -------------         ------ ----
 d----l         2023/10/27  9:45                MyLinkedFolder
@@ -223,7 +227,7 @@ Get-ChildItem | Format-List Name, LinkType, Target
 -   `Junction`：由 `mklink /j` 创建的目录联接。
 
 **示例输出：**
-```
+```text
 Name     : MyLinkedFolder
 LinkType : SymbolicLink
 Target   : D:\RealFolder

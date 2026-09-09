@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文记录 Vue 中多个请求并行执行时的加载状态管理方式。
+
 ```js
 /** Start: Loading */
 const allLoading = reactive({

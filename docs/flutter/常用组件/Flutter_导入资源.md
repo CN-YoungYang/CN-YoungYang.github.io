@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文介绍 Flutter 资源目录、`pubspec.yaml` 配置和资源访问方式。
+
 ## 加入资源
 - 创建 assets 目录
 

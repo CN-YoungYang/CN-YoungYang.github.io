@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文介绍 Flutter `ThemeData` 和全局样式配置。
+
 
 ## ThemeData 样式对象
 - 定义

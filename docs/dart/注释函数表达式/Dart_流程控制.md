@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文介绍 Dart 的条件、循环和跳转控制。
+
 ## if else
 ```dart
 int count = 5;

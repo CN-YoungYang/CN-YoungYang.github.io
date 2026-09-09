@@ -16,15 +16,15 @@
 选择前面有 element1 元素的每个 element2 元素。
 
 
-```html
+```css
 /* 既是第一项又是最后一项 */
 :first-of-type:last-of-type
 ```
-```html
+```css
 /* 既是第一项又是倒数第二项 */
 :first-of-type:nth-last-of-type(2)
 ```
-```html
+```css
 /* 既是第一项又是倒数第n项 */
 :first-of-type:nth-last-of-type(n)
 ```

@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文介绍 Dart 的单行、多行和文档注释。
+
 [高效 Dart 语言指南：文档](https://dart.cn/effective-dart/documentation/)
 
 可以通过 `dartdoc` 工具导出api文档

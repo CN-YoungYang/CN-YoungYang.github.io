@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文介绍 Dart 异常类型、错误抛出、捕获和自定义处理。
+
 ## 异常类型
 ### Exception 类
 [Exception class](https://api.dart.dev/stable/2.17.1/dart-core/Exception-class.html)

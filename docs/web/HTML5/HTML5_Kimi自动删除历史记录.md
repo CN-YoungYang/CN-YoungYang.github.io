@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文记录在 Kimi 页面中自动清理历史记录的 JavaScript 脚本。
+
 ```javascript
 (function (deleteInterval) {
     const checkElement = (($) => {

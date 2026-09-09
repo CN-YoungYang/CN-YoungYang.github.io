@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文说明 Flutter 无边界约束的常见来源及处理方式。
+
 ## UnconstrainedBox 不受约束
 - `UnconstrainedBox`的子组件将不再受到约束
 ```dart

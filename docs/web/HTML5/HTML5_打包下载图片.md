@@ -4,6 +4,8 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
+本文介绍在浏览器中使用 JavaScript 和 JSZip 批量打包下载图片。
+
 ## 控制台版本
 ```javascript
 (function(){

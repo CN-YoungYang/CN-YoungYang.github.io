@@ -4,53 +4,104 @@
 >
 > 本站地址：[https://blog.56321654.xyz](https://blog.56321654.xyz)
 
-本文介绍 [mattpocock/skills](https://github.com/mattpocock/skills) 的定位、安装方式和推荐工作流。它适用于 Claude Code、Codex 以及其他支持 Agent Skills 的编程代理。
+[mattpocock/skills](https://github.com/mattpocock/skills) 是 Matt Pocock 维护的 Agent Skills 合集，副标题为 “Skills for Real Engineers”。它把资深工程师工作时的提问方式、调查习惯、测试纪律和评审标准写成 Markdown 指令，交给 Claude Code、Codex、GitHub Copilot、Gemini CLI 等编程代理执行。
 
-> 本文根据上游仓库当前的 README 和插件清单整理。Skills 会持续更新，实际可用的名称和安装提示应以上游仓库为准。
+它不是运行时依赖，也不是模型，而是一组可以拆开、替换、组合的工作指令。上游对它的定位是三个词：**small**（每个 Skill 只做一件事）、**adaptable**（Markdown 可以直接改）、**composable**（按需串成流程）。
 
----
+> 本文依据上游 README、`.claude-plugin/plugin.json` 与 CHANGELOG 整理，对应插件版本 **1.3.2**（2026 年 11 月）。上游更新频繁，实际可用的 Skill 名称、安装命令和配置项请以仓库为准。
 
 ## 一、mattpocock/skills 是什么
 
-mattpocock/skills 是一组面向软件工程的 Agent Skills。它不是 npm 运行时依赖，也不是一个新的大模型，而是一组由 Markdown 编写的工作规范：告诉编程代理应该如何提问、调查代码、拆分任务、编写测试、排查问题和复查结果。
+它与 GSD、BMAD、Spec-Kit 这类“接管流程”的框架刻意区分开：那些框架替你规定完整开发流程，一旦流程本身有 bug，使用者很难修改；mattpocock/skills 只提供可拆装的纪律，流程的控制权仍然在使用者手里。
 
-它主要解决 AI 编程中常见的几个问题：
+### 它想修复的四类问题
 
-- 需求没有问清楚，代理做出了“看起来合理但不是用户想要”的功能；
-- 代理不了解项目中的业务术语，反复使用冗长、含糊的描述；
-- 没有快速、可靠的反馈回路，代码写完后才发现并不能工作；
-- 功能越堆越多，项目逐渐变成难以维护的代码泥团。
+| 失败模式 | 典型表现 | 对应的修复 |
+| --- | --- | --- |
+| 代理没做对 | 实现看起来合理，但不是你想要的东西 | grilling：让代理先连续提问，把需求对齐再动手（grill-me / grill-with-docs） |
+| 代理太啰嗦 | 不用项目术语，20 个词说 1 个词的事 | 共享领域语言：GLOSSARY.md 记录术语，ADR 记录决定 |
+| 代码跑不起来 | 写完才发现不能工作 | 紧凑的反馈回路：类型检查、浏览器、自动化测试、红-绿-重构（tdd、diagnosing-bugs） |
+| 代码变成泥团 | 功能越堆越多，越来越难改 | 深模块设计：大量行为藏在小接口后面（codebase-design、improve-codebase-architecture） |
 
-因此，这套 Skills 更像一套轻量的工程流程。它强调先对齐目标，再建立反馈回路，然后用小的、可验证的切片完成工作。
+其中“共享领域语言”是上游反复强调的技术：术语统一之后，变量名、函数名、文件名会跟着一致，代码库更容易导航，代理思考时消耗的 token 也更少。GLOSSARY.md 和 ADR 不需要单独维护，domain-modeling 会在需求澄清的过程中顺带建立。
 
 ### User-invoked 与 Model-invoked
 
-上游仓库把 Skills 分成两类：
+上游把 Skill 分成两类：
 
-- **User-invoked**：需要用户明确输入，例如 /grill-with-docs、/to-spec、/implement。这类 Skill 通常负责组织一个完整流程。
-- **Model-invoked**：用户可以直接调用，代理也可以在任务匹配时自动采用，例如 tdd、diagnosing-bugs、code-review、domain-modeling。这类 Skill 更像可复用的工程纪律。
+- **User-invoked**：只能由用户输入触发，例如 `/grill-with-docs`、`/to-spec`、`/implement`。它们的职责是**编排流程**。
+- **Model-invoked**：用户可以直接调用，代理也会在任务匹配时自动采用，例如 `tdd`、`diagnosing-bugs`、`code-review`、`domain-modeling`。它们承载**可复用的工程纪律**。
 
-一个 User-invoked Skill 可以调用 Model-invoked Skill；例如 /implement 会使用 TDD，并在完成后进行代码复查。但一个 User-invoked Skill 不会再自动调用另一个 User-invoked Skill，避免流程互相套娃。
+一条硬性规则：**user-invoked Skill 可以调用 model-invoked Skill，但永远不会调用另一个 user-invoked Skill**，避免流程互相套娃。例如 `/implement` 会调用 `tdd` 和 `code-review`；`/implement-spec` 会把每个 ticket 交给一个运行 `tdd` 的实现子代理。
 
----
+### 仓库中的目录分桶
+
+| 目录 | 内容 | 是否进入插件 |
+| --- | --- | --- |
+| `skills/engineering` | 日常工程流程，20 个 Skill | 是 |
+| `skills/productivity` | 通用工作流，7 个 Skill | 是 |
+| `skills/in-progress` | 公测中的实验 Skill，可能随时更改或消失 | 否，需要单独安装 |
+| `skills/misc` | 作者保留但很少使用的工具 | 否 |
+| `skills/deprecated` | 已废弃的 Skill | 当前为空 |
+
+`skills/in-progress` 目前包括 `loop-me`、`writing-beats`、`writing-fragments`、`writing-shape`、`claude-handoff`、`setup-ts-deep-modules`、`software-factory`；`skills/misc` 包括 `git-guardrails-claude-code`、`migrate-to-shoehorn`、`scaffold-exercises`、`setup-pre-commit`。这两类都不在插件里，也没有官方文档页，需要单独安装。
 
 ## 二、安装方式
 
-安装时选择一种方式即可，不要同时安装 Claude Code 插件和 skills.sh 文件版本，否则同一个 Skill 可能出现两份。
+一条铁律：**每个代理只选择一种安装方式**。插件和文件两种方式同时安装，会让每个 Skill 出现两份，导致重复显示、版本不一致，代理也不知道该读哪一份。
 
-| 使用场景 | 安装命令 | 特点 |
-| --- | --- | --- |
-| Claude Code | claude plugins install mattpocock-skills | 作为托管插件安装，更新由插件机制处理，Skill 文件通常按只读包使用 |
-| Claude Code 会话内 | /plugin install mattpocock-skills | 与上一种方式相同，只是从当前会话发起安装 |
-| Codex 或其他编程代理 | npx skills@latest add mattpocock/skills | 交互式选择要安装的 Skill 和目标 Agent，Skill 会写入项目并可自行修改 |
-| 想研究和改造 Skill | npx skills@latest add mattpocock/skills | 把普通文件放进项目，之后可按需修改，更新时手动执行 npx skills update |
-
-### Codex 及其他 Agent 的安装步骤
-
-在项目根目录执行：
+### 1. Claude Code
 
 ~~~bash
-npx skills@latest add mattpocock/skills
+claude plugin install mattpocock-skills@claude-plugins-official
+~~~
+
+这是官方插件市场中的托管插件，默认自动更新。插件包含 `skills/engineering` 和 `skills/productivity` 下的全部 27 个 Skill；`in-progress` 和 `misc` 不在其中。
+
+### 2. Codex
+
+~~~bash
+codex plugin marketplace add mattpocock/skills
+codex plugin add mattpocock-skills@mattpocock
+~~~
+
+Codex 会在启动时自动更新插件。
+
+### 3. GitHub Copilot（CLI 与 VS Code）
+
+~~~bash
+copilot plugin marketplace add mattpocock/skills
+copilot plugin install mattpocock-skills@mattpocock
+~~~
+
+然后在 `~/.copilot/settings.json` 中加入以下配置（只需一次）：
+
+~~~json
+{
+  "extraKnownMarketplaces": {
+    "mattpocock": {
+      "source": { "source": "github", "repo": "mattpocock/skills" },
+      "autoUpdate": true
+    }
+  }
+}
+~~~
+
+在 VS Code 中也可以运行 **Chat: Install Plugin From Source**，输入 `https://github.com/mattpocock/skills`，插件每天自动更新。
+
+### 4. Gemini CLI（手动更新）
+
+~~~bash
+gemini skills install https://github.com/mattpocock/skills.git --path skills/engineering
+gemini skills install https://github.com/mattpocock/skills.git --path skills/productivity
+~~~
+
+更新时重新执行这两条命令。
+
+### 5. 其他代理或想编辑文件
+
+~~~bash
+npx skills@latest add mattpocock/skills -a <agent>  # cursor、opencode、devin、windsurf、amp、pi；省略 -a 则交互选择
 ~~~
 
 安装器会询问两件事：
@@ -58,397 +109,430 @@ npx skills@latest add mattpocock/skills
 1. 要安装到哪些编程代理；
 2. 要安装哪些 Skill。
 
-如果准备使用工程流程，第一次安装时选择 setup-matt-pocock-skills。它负责为当前项目建立后续工程流程所需要的配置；只使用独立 Skill 时不必安装它。
+第一次使用工程流程时，务必勾选 `setup-matt-pocock-skills`；只使用独立 Skill 时不必安装它。
 
-在 Windows PowerShell 中也可以执行同一条命令。需要提前准备好 Node.js、npm，以及已经安装并能正常启动的目标编程代理。
+更新方式：
+
+~~~bash
+npx skills@latest update
+~~~
+
+上游新增 Skill 后，需要重新执行 add 才能看到。如果只想安装某个未收录进插件的 Skill（例如 `in-progress` 或 `misc` 目录中的），可以指定名称：
+
+~~~bash
+npx skills@latest add mattpocock/skills --skill=<name>
+~~~
 
 ### 两种安装方式的差异
 
-Claude Code 插件适合“直接使用上游版本”：Skill 作为一组托管内容安装，上游发布更新后会随插件机制更新。
+| 方式 | 特点 | 更新 |
+| --- | --- | --- |
+| Claude Code 插件（Codex、Copilot 同理） | 托管内容，按只读包使用，整套安装，不能逐个挑选 | 插件机制自动更新 |
+| npx skills 文件安装 | 文件写进项目，可阅读、修改、提交到版本库 | 手动执行 `npx skills@latest update`，需要检查 Git diff |
 
-npx skills 适合“把 Skill 当作项目文件维护”：文件在自己的项目中，可以阅读、修改和提交到版本库，但不会在后台自动更新。更新后建议先查看 Git diff，再决定是否接受上游改动。
-
-如果希望长期定制 Skill，通常应选择文件安装方式；如果只想使用官方版本并减少维护，则选择 Claude Code 插件方式。
+如果希望长期定制 Skill，选择文件安装方式；如果只想使用官方版本并减少维护，选择插件方式。
 
 ### 按工作流按需安装
 
-不需要把仓库中的全部 Skill 都安装到每个项目。使用 `npx skills` 安装时，在交互式列表中只勾选当前工作流需要的 Skill；后续遇到新的任务，再补充安装即可。
+使用 npx skills 安装时，不必把全部 Skill 都装进每个项目。注意 user-invoked Skill 会调用 model-invoked 的辅助 Skill，选择时要把依赖一起装上：
+
+- `/grill-with-docs` 需要 `grilling` 和 `domain-modeling`；
+- `/implement` 需要 `tdd` 和 `code-review`；
+- `/improve-codebase-architecture` 需要 `codebase-design`。
 
 | 工作流 | 建议安装的 Skill | 是否需要 setup |
 | --- | --- | --- |
-| 只澄清一个想法，不修改项目 | `grill-me` | 否 |
-| 在项目中澄清需求并保留上下文 | `setup-matt-pocock-skills`、`grill-with-docs` | 是 |
-| 当前会话完成一个小功能 | `grill-with-docs`、`implement`、`tdd`、`code-review` | 是，首次使用工程流程时 |
-| 开发跨多个会话的大功能 | `setup-matt-pocock-skills`、`grill-with-docs`、`to-spec`、`to-tickets`、`implement`、`tdd`、`code-review` | 是 |
+| 只澄清一个想法，不修改项目 | `grill-me`、`grilling` | 否 |
+| 在项目中澄清需求并留上下文 | `setup-matt-pocock-skills`、`grill-with-docs`、`grilling`、`domain-modeling` | 是 |
+| 当前会话完成一个小功能 | 上一行 + `implement`、`tdd`、`code-review` | 是 |
+| 跨多个会话开发大功能 | 上一行 + `to-spec`、`to-tickets`、`implement-spec`（或继续用 `implement`） | 是 |
 | 处理外部提交的 Issue | `setup-matt-pocock-skills`、`triage`、`implement`、`tdd`、`code-review` | 是 |
-| 排查复杂 Bug | `diagnosing-bugs`、`tdd`、`code-review` | 否，除非需要 issue tracker |
-| 做架构和领域建模 | `improve-codebase-architecture`、`grill-with-docs`、`domain-modeling`、`codebase-design` | 项目内工作建议安装 |
-| 只做资料调研或一次性原型 | `research` 或 `prototype`，需要跨会话时再加 `handoff` | 否 |
+| 排查复杂 Bug | `diagnosing-bugs`、`tdd`、`code-review` | 否 |
+| 架构维护与领域建模 | `improve-codebase-architecture`、`codebase-design`、`grill-with-docs`、`grilling`、`domain-modeling` | 建议 |
+| 资料调研或一次性原型 | `research` 或 `prototype`；需要跨会话时再加 `handoff` | 否 |
+| 收尾与提交 | `retro`、`pr` | 否 |
 
 例如，只想在当前项目中采用“小功能开发”流程，可以在安装器中选择：
 
 ~~~text
 setup-matt-pocock-skills
 grill-with-docs
+grilling
+domain-modeling
 implement
 tdd
 code-review
 ~~~
 
-不需要同时安装 `triage`、`wayfinder`、`teach` 等与当前任务无关的 Skill。需要时重新执行安装命令，选择新增 Skill 即可。
+不需要安装 `triage`、`wayfinder`、`teach` 等与当前任务无关的 Skill。需要时重新执行安装命令，选择新增 Skill 即可。
 
-需要注意：Claude Code 的插件安装方式是托管的整套插件，不能像 `npx skills` 一样在项目中逐个挑选。若目标是精确控制安装范围，应使用 `npx skills@latest add mattpocock/skills`，并在安装器中按上表选择。
+## 三、首次配置：运行 setup-matt-pocock-skills
 
----
-
-## 三、首次配置：运行 setup
-
-安装完成后，在项目根目录打开编程代理，执行：
+安装完成后，在每个项目里运行一次：
 
 ~~~text
 /setup-matt-pocock-skills
 ~~~
 
-这个 Skill 应该在每个项目中运行一次。它不是简单的初始化脚本，而是一个会先检查项目、再询问用户并写入配置的交互流程，主要完成以下工作。
+它不是简单的初始化脚本，而是一个“先探索项目、再逐段询问、最后写入配置”的交互流程：读取 `git remote -v`、`AGENTS.md` / `CLAUDE.md`、`GLOSSARY.md` / `GLOSSARY-MAP.md`（以及旧版的 `CONTEXT.md` / `CONTEXT-MAP.md`）、`docs/adr/`、`docs/agents/`、`.scratch/`，判断是否安装了 triage，以及项目是否是 monorepo（`pnpm-workspace.yaml`、`workspaces`、`packages/*` 等信号）。然后依次确认三件事。
 
-### 1. 配置 Issue Tracker
+### A. Issue Tracker
 
-后续的 /to-spec、/to-tickets、/triage 等流程需要知道任务放在哪里。常见选择包括：
+选择项目跟踪任务的位置：
 
-- **GitHub Issues**：使用 gh CLI；如果项目远程地址指向 GitHub，通常优先选择它；
-- **GitLab Issues**：使用 glab CLI；
-- **本地 Markdown**：把任务保存在项目的 .scratch/<feature>/ 下，适合个人项目；
-- **其他工具**：例如 Linear、Jira 或团队自定义流程，需要按提示说明如何读取和创建任务。
+- **GitHub**：通过 `gh` CLI 操作。当 remote 指向 GitHub 时，这是默认选项。
+- **GitLab**：通过 `glab` CLI 操作。
+- **本地 Markdown**：每个功能一个目录，文件放在 `.scratch/<feature>/`。
+- **其他**：Jira、Linear 或团队自己的流程，用一段话描述即可。
 
-配置通常会写入 docs/agents/issue-tracker.md。如果使用 GitHub 或 GitLab，还应先确认对应 CLI 已登录，并且当前账号有访问项目和创建任务的权限。
+选择结果记录在 `docs/agents/issue-tracker.md`。GitHub 和 GitLab 需要有一个可达的 remote；如果仓库还没有 remote，setup 会让你提供仓库地址，并帮你执行 `git remote add origin`。GitHub 和 GitLab 的模板里还有一个 “PRs as a request surface” 开关，默认关闭；只有希望外部 PR 也走 triage 时才需要打开。
 
-### 2. 配置 triage 标签
+### B. Triage 标签
 
-如果安装了 triage，setup 会询问是否使用默认标签。默认的五个角色是：
+这一节只在安装了 `triage` 时执行。它使用五个规范角色：
 
-~~~text
-needs-triage
-needs-info
-ready-for-agent
-ready-for-human
-wontfix
-~~~
+| 标签 | 含义 |
+| --- | --- |
+| `needs-triage` | 尚未评估 |
+| `needs-info` | 信息不足，等待补充 |
+| `ready-for-agent` | 已经足够明确，可以直接交给代理 |
+| `ready-for-human` | 需要人类决策或人工处理 |
+| `wontfix` | 不会处理 |
 
-如果团队已有自己的标签，可以在 setup 时映射，而不是再创建一套含义重复的标签。
+默认标签串就是角色名。如果项目里已经有自己的标签体系，setup 只做映射，不会重复创建；在 GitHub 和 GitLab 上，缺失的标签会被自动创建。
 
-### 3. 配置领域文档
+### C. 领域文档
 
-默认使用单一上下文布局：
-
-~~~text
-CONTEXT.md
-docs/adr/
-~~~
-
-CONTEXT.md 用来记录项目的领域术语和共享语言，ADR 用来记录不容易改变的架构决定。大型 monorepo 才需要考虑 CONTEXT-MAP.md 和多个上下文目录。
-
-setup 还会询问新文档的保存位置。完成后，其他 Skill 可以读取这些文件，减少每次进入项目都重新解释术语和约束的成本。
-
-### setup 会修改什么
-
-如果项目已经有 CLAUDE.md，setup 会优先更新它；没有时才考虑 AGENTS.md。它还可能创建以下配置文件：
+默认使用 single-context 布局：
 
 ~~~text
-docs/agents/issue-tracker.md
-docs/agents/domain.md
-docs/agents/triage-labels.md  # 安装并启用 triage 时才需要
+GLOSSARY.md      # 领域术语与共享语言
+docs/adr/        # 架构决定记录
 ~~~
 
-运行结束后应检查一次 diff，确认 issue 地址、标签和文档目录符合团队约定。
+只有当项目是 monorepo 时，才提供 multi-context 布局：
 
----
+~~~text
+GLOSSARY-MAP.md              # 根目录，指向各个上下文
+packages/a/GLOSSARY.md
+packages/a/docs/adr/
+packages/b/GLOSSARY.md
+packages/b/docs/adr/
+~~~
+
+注意命名变化：旧版本使用 `CONTEXT.md` 和 `CONTEXT-MAP.md`，1.3.0 起改名为 `GLOSSARY.md` 和 `GLOSSARY-MAP.md`。如果项目里还留着旧文件，setup 会提议用 `git mv` 迁移。
+
+### setup 会写入什么
+
+- 如果项目里已有 `CLAUDE.md`，就更新它；否则更新 `AGENTS.md`；两者都不存在时，会询问你要创建哪一个，**不会擅自决定，也不会在已有 `CLAUDE.md` 时另建一个 `AGENTS.md`**。
+- 在文件里加入一个 `## Agent skills` 段落，包含 Issue tracker、Triage labels、Domain docs 三个小节。
+- 创建以下文件：
+  - `docs/agents/issue-tracker.md`
+  - `docs/agents/domain.md`
+  - `docs/agents/triage-labels.md`（仅安装 triage 时）
+
+运行结束后建议看一眼 `git diff`，确认它选择的 tracker、标签和文档布局符合预期。需要切换 issue tracker，或者上游更新了模板、想刷新 `docs/agents/` 时，重新运行 setup 即可。
 
 ## 四、常用 Skill 说明
 
-### 工程流程类
+### Engineering：User-invoked
 
 | Skill | 作用 | 适合什么时候使用 |
 | --- | --- | --- |
-| /ask-matt | 根据当前情况选择合适的流程 | 不确定下一步该用哪个 Skill 时 |
-| /setup-matt-pocock-skills | 配置 issue tracker、triage 标签和领域文档 | 第一次在某个项目中使用前 |
-| /grill-with-docs | 通过连续提问澄清需求，并把术语和决定写入项目文档 | 准备开发一个功能或设计方案时 |
-| /grill-me | 只进行提问和澄清，不写入项目上下文 | 没有项目目录，只想打磨想法时 |
-| /to-spec | 把已经讨论清楚的内容整理成规格说明并发布 | 需要跨多个会话完成的功能 |
-| /to-tickets | 把规格拆成可独立验证的垂直切片，并标记阻塞关系 | 功能较大，需要多人或多会话协作时 |
-| /implement | 按规格或 ticket 实现功能，尽量使用 TDD，并在最后复查 | 已经有明确的实现任务时 |
-| /triage | 按状态和角色处理外部提交的 issue | bug 报告或需求刚进入项目时 |
-| /wayfinder | 为巨大、模糊、跨多会话的工作建立决策地图 | 目标太大，暂时无法直接拆成实现任务时 |
-| /improve-codebase-architecture | 扫描代码库，寻找可以深化模块边界的地方 | 做日常架构维护时 |
+| `ask-matt` | 根据当前情况指路；回答前会先读对应 Skill 的 SKILL.md | 不确定下一步该用哪个 Skill |
+| `grill-with-docs` | grilling + domain-modeling，边提问边写 GLOSSARY.md 和 ADR | 在项目中开发功能或设计方案 |
+| `triage` | 让 Issue 和外部 PR 在 triage 角色状态机中流转，写出 agent-ready brief | 外部 Bug 报告或需求刚进入项目 |
+| `improve-codebase-architecture` | 扫描可深化之处，生成可视化 HTML 报告，再对选中的机会继续 grill | 日常架构维护 |
+| `setup-matt-pocock-skills` | 配置 issue tracker、triage 标签、领域文档布局 | 每个项目第一次使用前 |
+| `to-spec` | 把当前会话综合成规格并发布，不再采访 | 讨论已充分，需要正式规格 |
+| `to-tickets` | 拆成 tracer-bullet ticket，并声明阻塞边 | 功能较大，需要多会话协作 |
+| `implement` | 按 spec 或 ticket 实现，驱动 tdd，最后 code-review 并提交 | 已有明确的实现任务 |
+| `implement-spec` | 把整条 spec 放到一条 integration branch 上并行实现 | 想一次跑完整个 spec |
+| `wayfinder` | 为超出单会话容量的大工程建立决策地图 | 目标太大，看不清路线 |
+| `retro` | 复盘会话，改进代理环境 | 一次构建结束后 |
 
-### 质量与问题处理类
-
-| Skill | 作用 |
-| --- | --- |
-| /tdd | 遵循“红 → 绿 → 重构”的测试驱动循环，以公开接口和行为为测试边界 |
-| /diagnosing-bugs | 先建立能复现当前问题的红色反馈回路，再最小化、假设验证、修复和回归测试 |
-| /code-review | 从 Standards 和 Spec 两个维度分别复查固定起点之后的改动 |
-| /prototype | 用一次性原型回答状态模型、交互逻辑或 UI 形态问题 |
-| /domain-modeling | 整理项目领域语言，解决术语含义重叠和架构决定记录问题 |
-| /codebase-design | 用深模块、接口、seam 等词汇讨论模块形状和边界 |
-| /resolving-merge-conflicts | 按每个冲突块追溯双方意图，完成正在进行的 merge 或 rebase |
-| /research | 让后台 Agent 查阅高可信来源，并在项目中生成带引用的 Markdown 结果 |
-
-### 通用效率类
+### Engineering：Model-invoked
 
 | Skill | 作用 |
 | --- | --- |
-| /handoff | 把当前上下文整理成可交给另一会话、目录或同事的文档 |
-| /teach | 以当前目录为学习工作区，分多个会话学习一个概念 |
-| /to-questionnaire | 把需要其他人回答的问题整理成问卷 |
-| /wait-what | 当一段说明没有被理解时，要求 Agent 使用更清楚的语言重新解释 |
-| /writing-for-agents | 编写 Agent 会读取的 Skill、AGENTS.md、CLAUDE.md 和配套文档 |
+| `prototype` | 用一次性原型回答设计问题：逻辑用单个 HTML 文件，UI 用多个可切换变体 |
+| `diagnosing-bugs` | 硬 Bug 的诊断循环：先建立对该 Bug 报红的反馈回路，再最小化、假设、插桩、修复、回归测试 |
+| `research` | 后台代理只查一手来源，在仓库中留下逐条引用的 Markdown |
+| `tdd` | 红-绿-重构，一次一个垂直切片；测试只打公开接口 |
+| `domain-modeling` | 主动维护领域模型：挑战术语、用边界场景施压、更新 GLOSSARY.md 和 ADR |
+| `codebase-design` | 深模块词汇：module、interface、depth、seam、adapter、leverage、locality |
+| `code-review` | 从 Standards（仓库规范 + Fowler 坏味道基线）和 Spec（忠实实现来源 Issue）两轴并行复审 |
+| `pr` | 塑造 PR 正文：最小可视化摘要、前后证据、单向门/双向门与影响范围判断 |
+| `wizard` | 为只有人类能做的步骤生成交互式 bash 向导 |
 
-上表是使用时最常见的主线。上游仓库还可能包含实验中或只面向特定 Agent 的目录，具体可用清单应以仓库的 README.md 和插件清单为准。
+### Productivity：User-invoked
 
----
+| Skill | 作用 |
+| --- | --- |
+| `grill-me` | 只提问，不写项目文档，适合不在工作目录时澄清想法 |
+| `handoff` | 把当前会话压缩成交接文档，存到操作系统临时目录，供另一个代理继续 |
+| `teach` | 以当前目录为学习工作区，跨会话学习一个概念 |
+| `to-questionnaire` | 把需要别人回答的决定做成问卷；只 grill “发送”，不 grill 主题 |
+| `wait-what` | 消息没听懂时重新讲解：补充上下文，用简化技术英语和共享词汇 |
+
+### Productivity：Model-invoked
+
+| Skill | 作用 |
+| --- | --- |
+| `grilling` | 提问原语：设计树、轮次、frontier，每题带推荐答案，“yes” 即接受推荐 |
+| `writing-for-agents` | 编写代理消费的文档：Skill、AGENTS.md / CLAUDE.md、被指针引用的文档 |
+
+### 已移除与实验中的 Skill
+
+- `resolving-merge-conflicts` 在 1.3.0 中移除，**没有替代品**：代理会直接处理进行中的 merge 或 rebase 冲突。
+- `in-progress` 目录中的 Skill 是公测功能，不进入插件，也没有文档页，可能随时更改或消失。需要尝鲜时用 `npx skills@latest add mattpocock/skills --skill=<name>` 单独安装。
+- `misc` 目录中的 Skill 是作者保留但很少使用的工具，不对外推广，但同样可以单独安装。
 
 ## 五、推荐工作流
 
-### 完整工程流程：从想法到可交付代码
-
-对于一个较大的功能，推荐使用下面这条主流程：
+### 主流程：从想法到交付
 
 ~~~text
 /grill-with-docs
     ↓
-/prototype（可选）
+/prototype（可选，用 /handoff 进出）
     ↓
 /to-spec
     ↓
 /to-tickets
     ↓
-/implement（内部按需使用 /tdd）
-    ↓
+/implement（逐个 ticket）  或  /implement-spec（整条 spec 并行）
+    ↓（内部 /tdd）
 /code-review
+    ↓
+/retro
 ~~~
 
-这条流程适合需要多个会话、多个任务或多人协作的功能。它把“想做什么”“怎么验证”“如何拆分”和“如何实现”分开处理，减少 Agent 在需求不清楚时直接写代码。
+这是 `ask-matt` 描述的主流程。它不是必须逐字执行的流水线，而是一张地图：小改动可以只走 grill-with-docs → implement；大功能才需要 spec 和 tickets；研究、原型、triage、wayfinder 是从旁边汇入的支路。
 
-#### 1. grill-with-docs：澄清需求并建立项目上下文
+### 上下文卫生
 
-`/grill-with-docs` 是需求分析阶段。它会通过连续提问确认目标、用户场景、边界条件、领域术语和架构决定，并把重要内容写入项目的 `CONTEXT.md` 和 ADR 文档。
+上游建议把主流程的前三步（grilling、spec、tickets）保持在**同一个未中断的上下文窗口**里，不要在 `/to-tickets` 之前 compact 或 clear，否则提问、规格和 ticket 之间会失去共同的思考背景。
 
-在有项目目录时，优先使用它而不是 `/grill-me`：`/grill-me` 只负责提问，`/grill-with-docs` 还会留下后续会话可以读取的文档。
+限制来自 **smart zone**：模型仍能清晰推理的窗口大约为 150k tokens。如果会话在 `/to-tickets` 之前接近这个上限，应该在最近的阶段边界执行 `/compact`，而不是在退化状态下继续。
 
-#### 2. prototype：验证不容易靠讨论确定的问题
+### 阶段边界怎么选
 
-`/prototype` 是可选阶段。当状态模型、业务逻辑或 UI 交互需要运行和实际操作才能判断时，先做一个一次性原型。原型的目标是回答一个设计问题，不是直接产出生产代码；验证完成后，将结论带回主流程。
+一个“阶段”是会话中的一块工作：grilling、实现、QA。阶段之间的边界有五种选择：
 
-如果需求已经可以通过讨论确定，就跳过这个阶段。
+| 选择 | 什么时候用 |
+| --- | --- |
+| 继续（Continue） | 下一个阶段需要当前阶段作为一手来源，或 smart zone 仍然充足 |
+| `/clear` | 接下来的工作与当前上下文无关；最便宜，但对相关内容是一去不返的损失 |
+| `/handoff` | 换 harness、换目录、交给同事，或在阶段中分叉一个侧任务 |
+| 子代理 | 任务可以独立完成，且你希望省下主窗口的上下文 |
+| `/compact` | 以上都不适用时的默认选项，压缩时传入指令，保留需要的内容 |
 
-#### 3. to-spec：把讨论结果整理成规格
+除“继续”之外，每一种选择都会把一手来源变成二手材料。因此顺序是：先问能不能继续，再问能不能清空，然后才是 handoff、子代理、compact。
 
-`/to-spec` 不会重新采访用户，而是综合当前会话和代码库信息，形成正式规格说明。通常包括：
+### 1. 澄清需求：grill-with-docs
 
-- 问题描述和解决方案；
-- 用户故事；
-- 实现决定和架构边界；
-- 测试决定和测试边界；
-- 明确的非目标和补充说明。
+`/grill-with-docs` 会同时调用 `grilling` 和 `domain-modeling`。grilling 使用一棵“设计树”，一轮一轮地问；每一轮只问那些前置问题已经确定、现在可以回答的问题（frontier）。问题会编号，并附带推荐答案，措辞使得回答 “yes” 就等于接受推荐。
 
-它会把规格发布到已经配置好的 Issue Tracker。需求仍然模糊时，应回到 `/grill-with-docs`，不要直接进入这个阶段。
+与 `/grill-me` 的区别在于状态：`grill-me` 只调用 grilling，不写任何文件，适合不在工作目录时使用；`grill-with-docs` 会把术语沉淀到 `GLOSSARY.md`，把难以逆转的决定写成 ADR，适合在有仓库的地方工作。
 
-#### 4. to-tickets：拆成可交付的垂直切片
+### 2. 可选：prototype
 
-`/to-tickets` 会把规格拆成多个 tracer-bullet ticket，并为每个 ticket 标记阻塞关系。好的 ticket 应该能够独立演示或验证，并且适合在一个新的会话中完成。
+如果某个问题无法只靠对话回答（例如“这个状态模型感觉对吗”“这个界面应该长什么样”），就绕道 `/prototype`。原型是**一次性代码**，从第一天起就明确标记，并放在真正会被使用的位置附近。
 
-不建议按“数据库 → API → UI”拆成水平技术层。更好的拆法是让每个 ticket 贯穿一条窄而完整的用户行为路径。Skill 会先展示拆分结果，确认粒度和阻塞关系后再发布 ticket。
+- 逻辑问题：生成一个可分享的 HTML 文件，包含自由操作按钮和分页的引导式走查。
+- UI 问题：在同一路由上放置多个截然不同的变体，用 URL 查询参数和底部浮动栏切换。
 
-#### 5. implement：实现 ticket，内部使用 TDD
+原型完成后，把验证过的决定折回真实代码；原型本身提交到 `main` 之外的 throwaway 分支，作为一手来源保留，并在实现 Issue 上留一个 context pointer。`main` 只保留验证后的决定。
 
-`/implement` 以一个规格或 ticket 为输入，阅读项目上下文后开始实现。实现过程中会尽量调用 `/tdd`，按下面的红—绿循环逐个完成垂直切片：
+需要跨会话做原型时，用 `/handoff` 把当前会话写成交接文档，再在原型目录中新开会话继续。
 
-~~~text
-先写一个描述用户行为的失败测试
-    ↓
-编写让测试通过的最少代码
-    ↓
-运行测试和类型检查
-    ↓
-进入下一个切片
+### 3. 写规格：to-spec
+
+`/to-spec` **不再采访**。需求已经在 grilling 阶段问清楚了，它只做四件事：探索仓库、使用 glossary 里的词汇、尊重已有 ADR、把讨论综合成一份可执行的规格。
+
+在发布之前，它会先与你确认测试 seam：优先使用现有 seam，位置尽可能高，理想情况下只有一个。确认后，规格发布到 issue tracker，并打上 `ready-for-agent` 标签，不需要再走 triage。
+
+### 4. 拆 ticket：to-tickets
+
+`/to-tickets` 把规格拆成 **tracer-bullet** 式的垂直切片：每个 ticket 都贯穿必要的层，能够独立演示、独立验证，并且能在一个全新的会话中完成。
+
+每个 ticket 会声明自己的 **blocking edges**（先依赖谁），并作为来源 Issue 的 sub-issue 发布。如果 tracker 支持原生 blocking link（例如较新的 `gh`），就直接建立链接，正文里不再写“Blocked by”；本地 Markdown tracker 则每个 ticket 一个文件，在文件中用 `Blocked by:` 列出阻塞项。
+
+### 5. 实现：implement 与 implement-spec
+
+两种实现方式，按你想要的掌控程度选择。
+
+**`/implement`：一次一个 ticket。** 它会先取回 ticket 并复述标题，然后在预先约定的 seam 上调用 `tdd`，一次完成一个红-绿-重构切片。实现过程中会经常运行类型检查和单个测试文件，最后运行一次全量测试，再调用 `code-review`，最后把改动提交到当前分支。每完成一个 ticket，建议 `/clear`，因为下一个 ticket 是自包含的，上一个 ticket 的上下文可以直接丢弃。
+
+**`/implement-spec`：整条 spec 一次跑完。** 它把 spec 和 tickets 读成一张任务图，在一条 integration branch 上并行调度：
+
+1. 可选地启动一个探索子代理，把调研笔记保存在仓库之外；
+2. 为每个就绪的 ticket 启动一个**全新的 implementer 子代理**，各自使用独立的 worktree 和分支，基于 integration branch 工作，驱动 `tdd`，完成前先把 integration tip 合并进来；
+3. 由 merger 子代理负责合并；
+4. 随着依赖完成，frontier 会不断补充，并发数随之增加；
+5. 全部完成后，在 integration branch 上运行一次 `code-review`，再由一个全新的 implementer 统一修复所有问题；
+6. 只有当 tracker 通过 PR 关闭工作，或用户明确要求时，才在第一次合并后开 draft PR；否则按 tracker 的方式关闭 ticket；
+7. 最后清理 worktree。
+
+想逐个掌控 ticket、在不同会话之间切换，选 `/implement`；想编排整条 spec、让实现并行推进，选 `/implement-spec`。
+
+### 6. 复查：code-review
+
+`/code-review` 需要一个固定点：某个 commit、分支、tag 或 merge-base。它从两个轴并行复查：
+
+- **Standards**：仓库自己的规范、`CODING_STANDARDS.md` / `CONTRIBUTING.md`，以及 Fowler 的坏味道基线；
+- **Spec**：改动是否忠实实现了来源 Issue 或规格，不多也不少。
+
+每个子代理都使用全新的上下文，避免被实现过程锚定。
+
+### 7. 收尾：retro
+
+`/retro` 复盘的是**代理环境**，不是代码。它寻找可以下次避免同类问题的改动：导航指针、自动化检查、编码规范、精简过大的全局 AGENTS.md、以及需要新增或调整的 Skill。
+
+机械性的错误应该变成确定性检查（lint、类型检查、测试）；判断性的问题应该写进 `CODING_STANDARDS.md`，供 `code-review` 使用。`CLAUDE.md` / `AGENTS.md` 应当保持极简，只放指针和不可推导的约定。
+
+### 场景速查
+
+| 当前情况 | 建议路径 |
+| --- | --- |
+| 只有一个小改动 | `grill-with-docs` → `implement` → `code-review` |
+| 一个功能，当天能完成 | `grill-with-docs` → `implement`（内部 tdd）→ `code-review` → `retro` |
+| 一个功能，需要多次会话 | `grill-with-docs` → `to-spec` → `to-tickets` → 逐 ticket `implement`（ticket 之间 `/clear`） |
+| 想并行推进整条 spec | 同上，直到 `to-tickets`，然后 `/implement-spec` |
+| 收到外部 Issue 或 PR | `triage` → `implement`（或先交给人类） |
+| 一个反复出现的怪 Bug | `diagnosing-bugs` → 修复后在同一会话 `retro` |
+| 目标太大，看不清路线 | `wayfinder` → 地图清晰后 `to-spec` |
+| 想长期维护代码库结构 | `improve-codebase-architecture` → 选中机会后 `grill-with-docs` |
+
+## 六、完整示例
+
+假设要给一个订单系统增加“导出 CSV”功能。
+
+### 第一步：安装与配置
+
+在 Claude Code 中安装插件：
+
+~~~bash
+claude plugin install mattpocock-skills@claude-plugins-official
 ~~~
 
-测试应验证公开接口和用户可观察的行为，而不是绑定私有函数或内部实现。完成后再运行完整测试，并把结果交给代码复查。
-
-#### 6. code-review：分别检查规范和需求
-
-`/code-review` 需要一个明确的固定比较点，例如某个 commit、分支或 `HEAD~n`，然后从两个维度审查改动：
-
-- **Standards**：是否符合项目规范，是否存在重复代码、过度抽象或模块边界问题；
-- **Spec**：是否完整实现规格，是否遗漏需求、错误实现，或加入规格之外的功能。
-
-两个维度会分别报告，避免“代码风格很好但做错了功能”，或者“功能做对了但破坏项目约定”。
-
-完整流程不是每个任务的强制步骤。简单任务可以跳过规格和 ticket 拆分，直接采用后面的简化流程。
-
-### 场景一：一个可以在当前会话完成的小功能
+在项目根目录运行一次 setup：
 
 ~~~text
-/grill-with-docs
-    ↓
-/implement
-    ↓
-/code-review
-~~~
-
-先用 `/grill-with-docs` 把需求、边界、术语和验收条件问清楚，再让 `/implement` 实现；`/implement` 内部按需使用 `/tdd`。实现过程中应一次完成一个垂直切片：先写能复现行为的失败测试，再写最少代码让测试通过。
-
-### 场景二：跨多个会话的大功能
-
-~~~text
-/grill-with-docs
-    ↓
-/to-spec
-    ↓
-/to-tickets
-    ↓
-按阻塞关系逐个启动 /implement
-    ↓
-/code-review
-~~~
-
-/to-spec 负责把讨论结果变成规格说明；/to-tickets 再把规格拆成可以独立演示或验证的 tracer-bullet tickets。每个 ticket 都应说明自己的阻塞项，优先实现没有阻塞项的任务。
-
-不要把所有任务都拆成“先改数据库、再改 API、最后改 UI”的水平层切片。更好的 ticket 是一条从数据到接口再到用户行为的窄而完整的路径，完成后能单独验证。
-
-### 场景三：遇到复杂 Bug
-
-~~~text
-/diagnosing-bugs
-    ↓
-建立会针对当前症状失败的测试、脚本或复现命令
-    ↓
-最小化复现 → 提出可证伪的假设 → 一次验证一个变量
-    ↓
-修复 → 回归测试 → 清理调试代码
-~~~
-
-/diagnosing-bugs 的重点不是一开始猜原因，而是先建立一个紧凑、确定、能对当前问题报红的反馈回路。没有可靠的复现信号时，不应直接凭感觉修改代码。
-
-### 场景四：处理别人提交的 Issue
-
-对于外部提交的 bug 或需求，先使用 /triage，将它整理成 Agent 可以执行的任务；对于已经由 /to-tickets 生成的任务，不需要再次 triage，直接进入 /implement。
-
-### 场景五：问题太大，暂时看不清路线
-
-当目标是一个新产品或大型改造，且一次会话无法看清从当前状态到目标的路径，可以使用 /wayfinder。它先在 issue tracker 中建立决策票据，逐个消除不确定性；路线清晰后，再回到 /to-spec → /to-tickets → /implement，不要跳过规格阶段直接开工。
-
----
-
-## 六、一个完整的使用示例
-
-假设要给项目增加“用户可以导出数据”的功能，可以按下面的方式与 Agent 交互：
-
-### 第一步：首次安装和配置
-
-~~~text
-npx skills@latest add mattpocock/skills
 /setup-matt-pocock-skills
 ~~~
 
-安装器中选择目标 Agent，并勾选 setup-matt-pocock-skills。setup 过程中选择项目实际使用的 issue tracker、标签和文档布局。
+选择 GitHub 作为 issue tracker，接受默认的五个 triage 标签，使用 single-context 布局（`GLOSSARY.md` + `docs/adr/`）。setup 会把配置写进已有的 `CLAUDE.md`，并创建 `docs/agents/issue-tracker.md` 和 `docs/agents/domain.md`。
 
 ### 第二步：澄清需求
 
 ~~~text
-/grill-with-docs
-
-我想增加用户数据导出功能，请先通过提问帮我明确用户范围、数据格式、权限、失败重试和验收标准。
+/grill-with-docs 我想让用户把订单列表导出成 CSV
 ~~~
 
-不要在需求还含糊时直接要求 Agent“把导出功能做出来”。提问阶段的结果应包括明确的用户故事、边界条件、项目术语和重要决定。
+代理会一轮一轮提问：导出全部还是当前筛选结果？十万行以上怎么处理？编码用 UTF-8 还是带 BOM？哪些角色可以导出？导出记录要不要审计？
 
-### 第三步：决定是否拆分任务
+回答的同时，它会把 `Order`、`Export`、`Filter` 等术语写进 `GLOSSARY.md`；如果决定采用流式导出以避免内存峰值，就写一条 ADR。
 
-如果功能可以在当前会话完成：
-
-~~~text
-/implement
-~~~
-
-如果功能较大，需要多个会话：
+### 第三步：写规格、拆 ticket
 
 ~~~text
 /to-spec
 /to-tickets
 ~~~
 
-/to-tickets 会先展示建议的拆分和阻塞关系，确认粒度后才发布任务。之后每个新会话从一个已准备好的 ticket 开始：
+`/to-spec` 会先确认测试 seam，例如只通过 `ExportService.export()` 这个公开入口测试，不 mock 内部实现。随后把规格发布到 GitHub Issue，打上 `ready-for-agent`。
+
+`/to-tickets` 可能拆出三个垂直切片：
+
+1. 小数据量导出（当前筛选结果，同步返回）；
+2. 大数据量流式导出（含进度与超时）；
+3. 权限与审计（记录谁在什么时候导出了什么）。
+
+第二个和第三个 ticket 会声明对第一个的阻塞关系。
+
+### 第四步：实现与复查
+
+逐个 ticket 实现：
 
 ~~~text
 /implement
 ~~~
 
-完成后运行测试，并让 /code-review 针对明确的固定起点检查改动。
+完成一个 ticket 后 `/clear`，再开始下一个；或者一次性交给：
 
----
+~~~text
+/implement-spec
+~~~
+
+它会在 integration branch 上并行实现，最后统一跑 `code-review`。
+
+### 第五步：复盘
+
+~~~text
+/retro
+~~~
+
+如果这次实现中反复出现“忘记给导出接口加权限检查”，retro 会建议把它变成一条确定性检查（例如路由级测试或 lint 规则），而不是只写一句“下次注意”。
 
 ## 七、维护和安全注意事项
 
-### 1. 把 Skill 当作可执行的工作指令审阅
-
-Skill 本身通常是 Markdown，但其中的流程可能要求 Agent 执行命令、修改文件、创建 issue、提交代码或访问外部服务。安装第三方 Skill 后，建议先阅读对应目录中的 SKILL.md，尤其关注：
-
-- 是否会写入项目文件；
-- 是否会创建或修改远程 issue；
-- 是否会运行脚本、安装依赖或访问网络；
-- 是否会接触密钥、环境变量和私有数据。
-
-不要把 API Key、密码或未脱敏日志放进 CONTEXT.md、Issue 或交给 Agent 的调试输出中。
-
-### 2. 不要同时保留两种安装来源
-
-同一个 Skill 同时存在于 Claude Code 插件和项目文件中时，可能发生重复显示、版本不一致或 Agent 不确定该读取哪一份。需要从托管版本切换到可编辑版本时，应先清理另一来源，并检查当前 Agent 实际加载的目录。
-
-### 3. 更新前查看变更
-
-- Claude Code 插件：按插件机制更新；
-- npx skills 文件安装：执行 npx skills update，然后检查 Git diff；
-- 如果本地改过 Skill，应先备份或提交，再接受上游更新。
-
-上游 Skill 的流程可能变化，特别是命令名、配置文件位置和 issue tracker 约定。升级后建议重新阅读 README，并验证一次 /ask-matt 或 /setup-matt-pocock-skills 的行为。
-
-### 4. 给 Agent 清晰的边界
-
-这些 Skill 可以改善工程过程，但不能替代代码审查、权限控制、CI 和人工验收。对会修改生产数据、创建远程资源、提交代码或发布版本的操作，应在 Agent 执行前明确授权范围。
-
----
+1. **把 Skill 当成可执行的工作指令来审阅。** 安装前快速读一遍相关 `SKILL.md`，尤其是会运行脚本或访问外部服务的 Skill。`wizard` 的 `template.sh` 是库代码，不要手改；`research` 会读取外部来源；`diagnosing-bugs` 要求先对密钥脱敏，但你自己也不要把生产密钥贴进会话。
+2. **不要同时保留两种安装来源。** 插件和 npx 文件安装二选一，否则每个 Skill 都会出现两份。
+3. **更新前看变更。** 插件方式自动更新；文件方式执行 `npx skills@latest update` 后检查 `git diff`；Gemini CLI 需要重跑两条安装命令。上游更新模板后，重新运行 `/setup-matt-pocock-skills` 刷新 `docs/agents/`。README 和 CHANGELOG 是判断“这个 Skill 还在不在”的第一来源，`ask-matt` 也会在回答前先读对应的 `SKILL.md`。
+4. **给代理清晰的边界。** Skills 提供的是纪律，不是保证。CI、权限控制、代码审查和人工验收仍然必须保留；不要让代理在无人监督的情况下执行不可逆操作。
+5. **模型兼容性。** 指令尽量写成“调用 Skill 工具”，不绑定某一个厂商；但不同 harness 对 Skill 的支持程度不同，插件方式通常最省心。
 
 ## 八、常见问题
 
-### 安装后找不到 Skill
+**安装后找不到 Skill？**
 
-确认安装器中选择了当前使用的 Agent，并重新打开会话。使用 npx skills 安装时，Skill 是写入项目的文件；需要在包含这些文件的项目目录中启动 Agent。
+先确认安装器选中的是当前使用的代理；文件安装需要在项目目录中启动代理；安装后重新打开会话。Claude Code 的当前命令是 `claude plugin install ...`，不是旧版的 `claude plugins install`。
 
-### /setup-matt-pocock-skills 提示缺少配置
+**为什么有这么多安装命令？**
 
-在项目根目录运行 setup，并确认 docs/agents/issue-tracker.md、docs/agents/domain.md 等文件已经生成。不要只在任意父目录或临时目录执行。
+每种代理有自己的插件机制：Claude Code、Codex、Copilot 用插件市场，Gemini CLI 用 `gemini skills install`，其他代理用 npx。每个代理只选一种方式即可。
 
-### 为什么 /grill-me 和 /grill-with-docs 都能提问
+**可以只安装一个 Skill 吗？**
 
-两者都用于澄清需求，但前者是无状态的；后者会把领域语言和架构决定写进项目文档。在有项目目录时优先使用 /grill-with-docs。
+插件做不到，它总是安装整套 27 个。使用 npx 时可以加 `--skill=<name>` 单独安装，但要注意依赖：例如 `grill-with-docs` 还需要 `grilling` 和 `domain-modeling`。
 
-### 为什么 /to-spec 不继续提问
+**setup 为什么改了我的 CLAUDE.md？**
 
-它的职责是综合当前会话已有的信息形成规格，而不是重新采访用户。如果需求还没有讨论清楚，应回到 /grill-with-docs。
+它优先编辑已存在的 `CLAUDE.md`，没有时才用 `AGENTS.md`，两者都没有才询问创建哪一个。新增内容是一个 `## Agent skills` 段落，通常只有几行指针。
 
-### 为什么 /to-tickets 生成的任务不是按技术层拆分
+**CONTEXT.md 去哪了？**
 
-该 Skill 有意使用垂直切片：每个 ticket 都要尽量贯穿完整路径，并能独立验证。这样 Agent 可以在较小的上下文中交付一个可见结果，也能减少长期分支之间的耦合。
+1.3.0 起改名为 `GLOSSARY.md`，多上下文项目用 `GLOSSARY-MAP.md`。项目里如果还有旧文件，setup 会提议用 `git mv` 迁移。
 
-### 可以只安装一个 Skill 吗
+**resolving-merge-conflicts 去哪了？**
 
-可以。安装器支持选择 Skill；但第一次使用工程流程时，建议至少安装 setup-matt-pocock-skills，并根据需要选择 grill-with-docs、implement、tdd、diagnosing-bugs 等。
+1.3.0 中移除，没有替代品。代理会直接处理进行中的 merge 或 rebase 冲突。
 
----
+**grill-me 和 grill-with-docs 有什么区别？**
+
+两者都调用 grilling。`grill-me` 无状态，不写文件；`grill-with-docs` 会写 `GLOSSARY.md` 和 ADR，适合有仓库的项目。
+
+**to-spec 为什么不继续提问？**
+
+采访应该在 grilling 阶段完成。`to-spec` 只负责探索仓库、确认测试 seam，并把已经想清楚的东西写成规格。
+
+**to-tickets 为什么不按“前端、后端、数据库”拆分？**
+
+那样会得到不能独立验证的水平切片。它拆的是 tracer-bullet 垂直切片：每个 ticket 都能端到端演示一个行为，适合在一个全新会话中完成。
+
+**implement 和 implement-spec 怎么选？**
+
+想逐个掌控 ticket、在每个 ticket 之间清空上下文，用 `implement`；想编排整条 spec、让实现并行推进，用 `implement-spec`。
+
+**用了这些 Skill 还需要测试和评审吗？**
+
+需要。Skill 让代理更可能按纪律工作，但它不会替你运行 CI、做权限控制或承担验收责任。
 
 ## 参考链接
 
-- [mattpocock/skills GitHub 仓库](https://github.com/mattpocock/skills)
+- [mattpocock/skills](https://github.com/mattpocock/skills)
+- [CHANGELOG](https://github.com/mattpocock/skills/blob/main/CHANGELOG.md)
 - [skills.sh 上的 mattpocock/skills](https://skills.sh/mattpocock/skills)
-- [Claude Code Plugins 文档](https://code.claude.com/docs/en/plugins)
+- [Claude Code 插件文档](https://code.claude.com/docs/en/plugins)
